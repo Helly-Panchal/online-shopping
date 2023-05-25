@@ -9,11 +9,13 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './main/header/header.component';
+import { LayoutComponent } from './main/layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
