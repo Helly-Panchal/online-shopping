@@ -8,10 +8,12 @@ import { AuthModule } from './auth/auth.module';
 // components
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './main/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
