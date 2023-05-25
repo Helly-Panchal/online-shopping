@@ -1,16 +1,18 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100">
   <h1 class="text-center">Login</h1>
 
-  <form class="d-flex flex-column justify-content-center align-items-center w-50">
+  <form class="d-flex flex-column justify-content-center align-items-center w-50" #loginForm="ngForm"
+    (ngSubmit)="onSubmit(loginForm)">
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12">
       <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email">
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email" name="email" ngModel>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
       <label for="inputPassword4" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Enter your Password">
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Enter your Password" name="password"
+        ngModel>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 d-flex justify-content-center">
@@ -18,8 +20,8 @@
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 d-flex justify-content-between mt-4">
-      <i><a href="">Please register if you don't have account</a></i>
-      <i><a href="">Forgot password?</a></i>
+      <i><a routerLink="/register">Please register if you don't have account</a></i>
+      <i><a routerLink="/forgot-password">Forgot password?</a></i>
     </div>
   </form>
 </div>

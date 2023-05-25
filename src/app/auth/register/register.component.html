@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="container d-flex flex-column justify-content-center align-items-center w-100">
+  <h1 class="text-center">Register</h1>
+
+  <form class="d-flex flex-column justify-content-center align-items-center w-50" #registerForm="ngForm"
+    (ngSubmit)="onSubmit(registerForm)">
+
+    <div class="col col-12 col-xs-10 col-sm-11 col-md-12">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email" name="email" ngModel>
+    </div>
+
+    <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
+      <label for="inputPassword4" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Enter your Password" name="password"
+        ngModel>
+    </div>
+
+    <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
+      <label for="role" class="form-label">Role</label>
+      <select class="form-select" id="role" aria-label="roles">
+        <option selected="selected" class="role">Select role</option>
+        <option value="1">Admin</option>
+        <option value="2">User</option>
+      </select>
+    </div>
+
+    <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 d-flex justify-content-center">
+      <button class="btn btn-success w-50">Register</button>
+    </div>
+
+    <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 text-center">
+      <i><a routerLink="/login" routerLinkActive="router-link-active">Already have an account? Login here</a></i>
+    </div>
+  </form>
+</div>
