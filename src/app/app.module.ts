@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './main/header/header.component';
 import { LayoutComponent } from './main/layout/layout.component';
+import { FooterComponent } from './main/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LayoutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
