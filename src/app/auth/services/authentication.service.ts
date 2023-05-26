@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import 'firebase/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +11,25 @@ import 'firebase/auth';
 
 export class AuthenticationService {
   userData: Observable<any>;
+  public isUserLoggedIn: boolean = false;
 
-  constructor(private angularFireAuth: AngularFireAuth) {
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     this.userData = angularFireAuth.authState;
   }
 
   // Sign up
-  SignUp(email: string, password: string) {
-    console.log(email, password);
-
+  SignUp(email: string, password: string, role: string) {
     this.angularFireAuth.createUserWithEmailAndPassword(email, password).then((res: any) => {
       console.log('You are Successfully signed up!', res);
+      const user = {
+        email: res.user?.email,
+        uid: res.user?.uid,
+        role: role,
+      };
+      this.db.database.ref('users').push(user);
+      if (res) {
+        this.router.navigate(['/login']);
+      }
     }).catch((error: { message: any; }) => {
       console.log('Something is wrong:', error.message);
     });
@@ -29,6 +39,9 @@ export class AuthenticationService {
   SignIn(email: string, password: string) {
     this.angularFireAuth.signInWithEmailAndPassword(email, password).then((res: any) => {
       console.log('You are Successfully logged in!');
+      if (res) {
+        this.router.navigate(['/layout']);
+      }
     }).catch((err: { message: any; }) => {
       console.log('Something is wrong:', err.message);
     });
@@ -37,6 +50,7 @@ export class AuthenticationService {
   // Sign out
   SignOut() {
     this.angularFireAuth.signOut();
+    this.router.navigate(['/login']);
   }
 }
 

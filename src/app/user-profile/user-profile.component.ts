@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../auth/services/authentication.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
+  constructor(private authenticationService: AuthenticationService) { }
 
+  public logout(): void {
+    this.authenticationService.SignOut();
+  }
 }

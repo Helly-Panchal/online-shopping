@@ -10,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class RegisterComponent {
   public email!: string;
   public password!: string;
+  public role!: string;
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -18,8 +19,11 @@ export class RegisterComponent {
   }
 
   signUp(form: NgForm) {
-    this.authenticationService.SignUp(form.value.email, form.value.password);
+    this.authenticationService.SignUp(form.value.email, form.value.password, form.value.role);
     this.email = '';
     this.password = '';
+    this.role = '';
+    console.log(form.value.role);
+
   }
 }

@@ -7,15 +7,21 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { MyOrdersComponent } from './product/my-orders/my-orders.component';
 import { ProductsComponent } from './product/products/products.component';
 import { CartComponent } from './product/cart/cart.component';
+import { LayoutComponent } from './main/layout/layout.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminDashboardComponent },
-  { path: 'my-orders', component: MyOrdersComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'profile', component: UserProfileComponent },
+  {
+    path: 'layout', component: LayoutComponent,
+    children: [
+      { path: 'admin', component: AdminDashboardComponent },
+      { path: 'my-orders', component: MyOrdersComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'profile', component: UserProfileComponent },
+    ]
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
