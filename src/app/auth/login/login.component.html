@@ -6,7 +6,11 @@
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12">
       <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email" name="email" ngModel>
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email" required email ngModel
+          name="email" #email="ngModel">
+      </div>
+      <span class="error-message" *ngIf="!email.valid && email.touched">Please enter valid email!!</span>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">

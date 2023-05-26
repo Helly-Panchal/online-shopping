@@ -104,6 +104,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "online-shopping:build:production",
+            "firebaseProject": "online-shopping-c916e",
+            "firebaseHostingSite": "online-shopping-c916e"
+          }
         }
       }
     }

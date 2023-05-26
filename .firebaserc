@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "online-shopping-c916e"
+  },
+  "targets": {
+    "online-shopping-c916e": {
+      "hosting": {
+        "online-shopping": [
+          "online-shopping-c916e"
+        ]
+      }
+    }
   }
 }

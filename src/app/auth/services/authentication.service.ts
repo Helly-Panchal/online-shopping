@@ -8,7 +8,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 })
 
 export class AuthenticationService {
-  public userData: Observable<any> | undefined;
+  userData: Observable<firebase.User>;
 
   constructor(private angularFireAuth: AngularFireAuth) {
     this.userData = angularFireAuth.authState;
@@ -16,7 +16,9 @@ export class AuthenticationService {
 
   /* Sign up */
   SignUp(email: string, password: string) {
-    this.angularFireAuth.createUserWithEmailAndPassword(email, password)
+    this.angularFireAuth
+      .auth
+      .createUserWithEmailAndPassword(email, password)
       .then((res: any) => {
         console.log('You are Successfully signed up!', res);
       })
@@ -28,6 +30,7 @@ export class AuthenticationService {
   /* Sign in */
   SignIn(email: string, password: string) {
     this.angularFireAuth
+      .auth
       .signInWithEmailAndPassword(email, password)
       .then((res: any) => {
         console.log('You are Successfully logged in!');
@@ -40,6 +43,7 @@ export class AuthenticationService {
   /* Sign out */
   SignOut() {
     this.angularFireAuth
+      .auth
       .signOut();
   }
 }
