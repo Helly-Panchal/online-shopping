@@ -8,19 +8,18 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  public email!: string;
+  public password!: string;
+
   constructor(private authenticationService: AuthenticationService) { }
 
   onSubmit(register: NgForm) {
     console.log(register);
   }
 
-  public email!: string;
-  public password!: string;
-
-  signUp() {
-    this.authenticationService.SignUp(this.email, this.password);
+  signUp(form: NgForm) {
+    this.authenticationService.SignUp(form.value.email, form.value.password);
     this.email = '';
     this.password = '';
   }
-
 }

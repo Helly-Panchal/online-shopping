@@ -17,8 +17,8 @@ export class LoginComponent {
   public email!: string;
   public password!: string;
 
-  signIn() {
-    this.authenticationService.SignIn(this.email, this.password);
+  signIn(form: NgForm) {
+    this.authenticationService.SignIn(form.value.email, form.value.password);
     this.email = '';
     this.password = '';
   }
