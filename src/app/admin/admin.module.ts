@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { AddProductFormComponent } from './products/add-product-form/add-product-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AdminRoutingModule,
     MatButtonModule,
     MatDialogModule,
-
+    ReactiveFormsModule
   ],
   exports: [
     AdminDashboardComponent,

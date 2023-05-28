@@ -24,6 +24,8 @@ export class ProductsComponent {
   }
 
   openForm(): void {
-    this.dialog.open(AddProductFormComponent);
+    this.dialog.open(AddProductFormComponent, {
+      width: '100%'
+    });
   }
 }

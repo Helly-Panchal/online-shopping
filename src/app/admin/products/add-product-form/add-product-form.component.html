@@ -1,4 +1,62 @@
-<p>add-product-form works!</p>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-</div>
+<form [formGroup]="addProductForm" class="p-5">
+
+  <!-- product name -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <input type="text" class="form-control" id="productName" placeholder="Enter product name"
+        formControlName="productName">
+      <div *ngIf="addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched">
+        <span class="error-message" *ngIf="addProductForm.get('productName')?.errors!['required']">
+          Please enter products name.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- product description -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <input type="text" class="form-control" id="productDescription" placeholder="Enter product description"
+        formControlName="productDescription">
+      <div
+        *ngIf="addProductForm.get('productDescription')?.invalid && addProductForm.get('productDescription')?.touched">
+        <span class="error-message" *ngIf="addProductForm.get('productDescription')?.errors!['required']">
+          Please enter products description.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- product prize -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <input type="number" class="form-control" id="productPrice" placeholder="Enter product price"
+        formControlName="productPrice">
+      <div *ngIf="addProductForm.get('productPrice')?.invalid && addProductForm.get('productPrice')?.touched">
+        <span class="error-message" *ngIf="addProductForm.get('productPrice')?.errors!['required']">
+          Please enter product price.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- product quantity -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <input type="number" class="form-control" id="productQuantityStock" placeholder="Enter product quantity stock"
+        formControlName="productQuantityStock">
+      <div
+        *ngIf="addProductForm.get('productQuantityStock')?.invalid && addProductForm.get('productQuantityStock')?.touched">
+        <span class="error-message" *ngIf="addProductForm.get('productQuantityStock')?.errors!['required']">
+          Please enter product quantity stock.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="p-0 mt-3 d-flex justify-content-center">
+    <button class="btn btn-primary buttons me-3" mat-dialog-close>Add</button>
+    <button class="btn btn-danger buttons" mat-dialog-close>Close</button>
+  </div>
+
+</form>
