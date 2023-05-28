@@ -5,9 +5,12 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { MyOrdersComponent } from './product/my-orders/my-orders.component';
-import { ProductsComponent } from './product/products/products.component';
 import { CartComponent } from './product/cart/cart.component';
 import { LayoutComponent } from './main/layout/layout.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { UsersComponent } from './admin/users/users.component';
+import { ProductsComponent } from './admin/products/products.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,9 +18,16 @@ const routes: Routes = [
   {
     path: 'layout', component: LayoutComponent,
     children: [
-      { path: 'admin', component: AdminDashboardComponent },
+      {
+        path: 'admin', component: AdminDashboardComponent,
+        children: [
+          { path: 'products', component: ProductsComponent },
+          { path: 'orders', component: OrdersComponent },
+          { path: 'users', component: UsersComponent }
+        ]
+      },
       { path: 'my-orders', component: MyOrdersComponent },
-      { path: 'products', component: ProductsComponent },
+      { path: 'products', component: ProductListComponent },
       { path: 'cart', component: CartComponent },
       { path: 'profile', component: UserProfileComponent },
     ]

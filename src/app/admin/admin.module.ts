@@ -18,6 +18,12 @@ import { UsersComponent } from './users/users.component';
   imports: [
     CommonModule,
     AdminRoutingModule
+  ],
+  exports: [
+    AdminDashboardComponent,
+    ProductsComponent,
+    OrdersComponent,
+    UsersComponent
   ]
 })
 export class AdminModule { }

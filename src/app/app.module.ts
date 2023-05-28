@@ -14,6 +14,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFireModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

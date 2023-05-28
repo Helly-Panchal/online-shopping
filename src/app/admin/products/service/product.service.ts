@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +25,9 @@ export class ProductService {
           console.log("GetProduct", res);
         },
       });
+  }
+
+  deleteProduct() {
+    console.log("deleted : ", this.db.database.ref('products').child('-NWWxuJ7q-z5OcOvURq1').remove());
   }
 }
