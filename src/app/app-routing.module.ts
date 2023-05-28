@@ -9,8 +9,8 @@ import { CartComponent } from './product/cart/cart.component';
 import { LayoutComponent } from './main/layout/layout.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { UsersComponent } from './admin/users/users.component';
-import { ProductsComponent } from './admin/products/products.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductsComponent } from './admin/products/products.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
