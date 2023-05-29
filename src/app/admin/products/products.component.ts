@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../service/product.service';
+import { Component, OnInit } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
-import { AddProductFormComponent } from './add-product-form/add-product-form.component';
-import { IProduct } from './interfaces/product.interface';
+import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
+import { IProduct } from '../interfaces/product.interface';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-products',
@@ -13,20 +14,22 @@ export class ProductsComponent implements OnInit {
 
   public products!: IProduct[];
 
-  constructor(private productService: ProductService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getProducts();
+  }
+
+  openForm(): void {
+    this.dialog.open(AddProductFormComponent, {
+      width: '100%'
+    });
   }
 
   public getProducts() {
     return this.productService.getProduct().subscribe(res => {
       this.products = res;
     });
-  }
-
-  public addProducts(): void {
-    this.productService.addProduct();
   }
 
   public deleteProduct(): void {
@@ -37,9 +40,4 @@ export class ProductsComponent implements OnInit {
     this.productService.updateProduct();
   }
 
-  openForm(): void {
-    this.dialog.open(AddProductFormComponent, {
-      width: '100%'
-    });
-  }
 }

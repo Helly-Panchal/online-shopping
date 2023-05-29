@@ -1,6 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,14 +9,14 @@ export class ProductService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  addProduct() {
-    const product = {
-      name: 'Samsung Phone',
-      description: 'good bettery life, fast charging',
-      price: '123',
-      stock: '10'
-    };
-    console.log(this.db.database.ref('products').push(product));
+  addProduct(formData: object) {
+    // const product = {
+    //   name: 'Samsung Phone',
+    //   description: 'good bettery life, fast charging',
+    //   price: '123',
+    //   stock: '10'
+    // };
+    return this.db.database.ref('products').push(formData);
   }
 
   getProduct() {
@@ -34,18 +35,18 @@ export class ProductService {
   }
 
   deleteProduct() {
-    console.log("deleted : ", this.db.database.ref('products').child('-NW_zakNdltpfJD8oxkc').remove());
+    console.log("deleted : ", this.db.database.ref('products').child('-NWa9NrvVr8ZsAtaMNKO').remove());
     this.getProduct();
   }
 
-  updateProduct() {
+  public updateProduct() {
     const updateData = {
       name: 'Vivo Phone',
       description: 'good bettery life, fast charging',
       price: '456',
       stock: '10'
     };
-    console.log("updated", this.db.database.ref('products').child('-NW_zakNdltpfJD8oxkc').update(updateData));
+    console.log("updated", this.db.database.ref('products').child('-NWa9NrvVr8ZsAtaMNKO').update(updateData));
     this.getProduct();
   }
 }

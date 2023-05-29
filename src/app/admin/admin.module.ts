@@ -5,7 +5,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { OrdersComponent } from './orders/orders.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
-import { AddProductFormComponent } from './products/add-product-form/add-product-form.component';
+import { AddProductFormComponent } from './add-product-form/add-product-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
