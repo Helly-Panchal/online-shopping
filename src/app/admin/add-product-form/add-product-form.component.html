@@ -55,7 +55,8 @@
   </div>
 
   <div mat-dialog-actions class="p-0 mt-3 d-flex justify-content-center">
-    <button type="submit" class="btn btn-primary buttons me-3" mat-dialog-close>Add</button>
+    <button type="submit" class="btn btn-primary buttons me-3" mat-dialog-close
+      [disabled]="!addProductForm.valid">Add</button>
     <button class="btn btn-danger buttons" mat-dialog-close>Close</button>
   </div>
 

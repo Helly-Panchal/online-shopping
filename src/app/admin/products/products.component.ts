@@ -28,12 +28,17 @@ export class ProductsComponent implements OnInit {
 
   public getProducts() {
     return this.productService.getProduct().subscribe(res => {
+      console.log(res);
+
       this.products = res;
     });
   }
 
-  public deleteProduct(): void {
-    this.productService.deleteProduct();
+  public deleteProduct(id: string) {
+    this.productService.deleteProduct(id).then(() => {
+      console.log("Deleted");
+      this.productService.getProduct();
+    });
   }
 
   public updateProduct(): void {
