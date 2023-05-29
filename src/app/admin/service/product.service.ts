@@ -34,7 +34,18 @@ export class ProductService {
   }
 
   deleteProduct() {
-    console.log("deleted : ", this.db.database.ref('products').child('-NW_wRLlvABau7Ay0YZq').remove());
+    console.log("deleted : ", this.db.database.ref('products').child('-NW_zakNdltpfJD8oxkc').remove());
+    this.getProduct();
+  }
+
+  updateProduct() {
+    const updateData = {
+      name: 'Vivo Phone',
+      description: 'good bettery life, fast charging',
+      price: '456',
+      stock: '10'
+    };
+    console.log("updated", this.db.database.ref('products').child('-NW_zakNdltpfJD8oxkc').update(updateData));
     this.getProduct();
   }
 }

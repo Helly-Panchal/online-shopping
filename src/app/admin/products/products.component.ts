@@ -33,6 +33,10 @@ export class ProductsComponent implements OnInit {
     this.productService.deleteProduct();
   }
 
+  public updateProduct(): void {
+    this.productService.updateProduct();
+  }
+
   openForm(): void {
     this.dialog.open(AddProductFormComponent, {
       width: '100%'
