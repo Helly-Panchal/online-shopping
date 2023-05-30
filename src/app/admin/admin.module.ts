@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserCardComponent } from './user-card/user-card.component';
+import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     OrdersComponent,
     UsersListComponent,
     AddProductFormComponent,
-    UserCardComponent
+    UserCardComponent,
+    EditUserFormComponent
   ],
   imports: [
     CommonModule,
@@ -28,10 +30,11 @@ import { UserCardComponent } from './user-card/user-card.component';
     ReactiveFormsModule
   ],
   exports: [
-    AdminDashboardComponent,
-    ProductsComponent,
-    OrdersComponent,
-    UsersListComponent,
+    CommonModule,
+    AdminRoutingModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
