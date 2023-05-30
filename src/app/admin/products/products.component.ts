@@ -21,13 +21,6 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  // openForm(): void {
-  //   this.dialog.open(AddProductFormComponent,
-  //     {
-  //       width: '100%'
-  //     });
-  // }
-
   public getProducts() {
     return this.productService.getProduct().subscribe(res => {
       this.products = res;

@@ -28,7 +28,7 @@ export class AuthenticationService {
       };
       this.db.database.ref('users').push(user);
       if (res) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/layout/products']);
       }
     }).catch((error: { message: any; }) => {
       console.log('Something is wrong:', error.message);
@@ -40,7 +40,7 @@ export class AuthenticationService {
     this.angularFireAuth.signInWithEmailAndPassword(email, password).then((res: any) => {
       console.log('You are Successfully logged in!');
       if (res) {
-        this.router.navigate(['/layout']);
+        this.router.navigate(['/layout/products']);
       }
     }).catch((err: { message: any; }) => {
       console.log('Something is wrong:', err.message);
