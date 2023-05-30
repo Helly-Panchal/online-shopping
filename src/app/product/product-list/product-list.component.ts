@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
 
   public productList!: IProduct[];
+  public isLoading: boolean = true;
+  public isError: boolean = false;
 
   constructor(private productService: ProductService) { }
 
@@ -18,12 +20,17 @@ export class ProductListComponent implements OnInit {
   }
 
   public getAllProducts(): void {
+    this.isLoading = true;
     this.productService.getProduct().subscribe({
       next: (res) => {
         this.productList = res;
+        this.isLoading = false;
+        this.isError = false;
       },
       error: (error) => {
         console.log(error);
+        this.isLoading = false;
+        this.isError = true;
       }
     });
   }
