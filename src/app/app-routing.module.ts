@@ -8,7 +8,7 @@ import { MyOrdersComponent } from './product/my-orders/my-orders.component';
 import { CartComponent } from './product/cart/cart.component';
 import { LayoutComponent } from './main/layout/layout.component';
 import { OrdersComponent } from './admin/orders/orders.component';
-import { UsersComponent } from './admin/users-list/users-list.component';
+import { UsersListComponent } from './admin/users-list/users-list.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductsComponent } from './admin/products/products.component';
 
@@ -23,7 +23,7 @@ const routes: Routes = [
         children: [
           { path: 'products', component: ProductsComponent },
           { path: 'orders', component: OrdersComponent },
-          { path: 'users', component: UsersComponent },
+          { path: 'users', component: UsersListComponent },
           { path: '', redirectTo: 'products', pathMatch: 'full' }
         ]
       },

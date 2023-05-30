@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getUsers() {
+  public getUsers() {
     return this.db.object('users').valueChanges().pipe(
       map((res: any) => {
         const usersList: any[] = [];
@@ -22,5 +22,10 @@ export class UserService {
         return usersList;
       })
     )
+  }
+
+  public updateUser(id: string, data: any) {
+    console.log("updated", this.db.database.ref('users').child(id).update(data));
+    this.getUsers();
   }
 }

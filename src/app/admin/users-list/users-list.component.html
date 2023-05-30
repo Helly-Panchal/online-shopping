@@ -1,1 +1,7 @@
-<p>users works!</p>
+<div class="container w-50 d-flex justify-content-center">
+  <div class="row row-cols-1 g-4 p-5">
+    <ng-container *ngFor="let user of usersList">
+      <app-user-card [user]="user"></app-user-card>
+    </ng-container>
+  </div>
+</div>
