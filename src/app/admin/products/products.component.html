@@ -13,14 +13,14 @@
 
 
   <div class="container" *ngIf="!isLoading && !isError && products.length > 0">
-    <table class="table">
-      <thead>
+    <table class="table text-center">
+      <thead class="table-primary">
         <tr>
           <th>Name</th>
           <th>Description</th>
           <th>Price</th>
           <th>Stock</th>
-          <th></th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody *ngFor="let product of products">

@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductModule } from './product/product.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AdminModule,
+    ProductModule,
     BrowserAnimationsModule
   ],
   providers: [],
