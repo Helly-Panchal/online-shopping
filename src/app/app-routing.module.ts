@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'admin', component: AdminDashboardComponent,
         children: [
-          { path: 'products', component: ProductsComponent },
+          { path: 'products', component: ProductsComponent, pathMatch: 'full' },
           { path: 'orders', component: OrdersComponent },
           { path: 'users', component: UsersComponent }
         ]

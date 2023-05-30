@@ -1,4 +1,4 @@
-<form [formGroup]="addProductForm" (ngSubmit)="addProducts()" class="p-5">
+<form [formGroup]="addProductForm" class="p-5">
 
   <!-- product name -->
   <div class="form-group mt-4">
@@ -55,8 +55,7 @@
   </div>
 
   <div mat-dialog-actions class="p-0 mt-3 d-flex justify-content-center">
-    <button type="submit" class="btn btn-primary buttons me-3" mat-dialog-close
-      [disabled]="!addProductForm.valid">Add</button>
+    <button type="submit" class="btn btn-primary buttons me-3" (click)="addProducts()">Submit</button>
     <button class="btn btn-danger buttons" mat-dialog-close>Close</button>
   </div>
 

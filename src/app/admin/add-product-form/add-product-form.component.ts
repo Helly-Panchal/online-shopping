@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../service/product.service';
 import { IProduct } from '../interfaces/product.interface';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-product-form',
@@ -11,6 +12,8 @@ import { IProduct } from '../interfaces/product.interface';
 export class AddProductFormComponent implements OnInit {
 
   public addProductForm!: FormGroup;
+  public updatedId!: string | null;
+
   public product: IProduct = {
     id: '',
     name: '',
@@ -19,7 +22,10 @@ export class AddProductFormComponent implements OnInit {
     stock: 0
   };
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, public dialogRef: MatDialogRef<AddProductFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IProduct, public dialog: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -27,18 +33,17 @@ export class AddProductFormComponent implements OnInit {
 
   public initializeForm(): void {
     this.addProductForm = new FormGroup({
-      productName: new FormControl(null, Validators.required),
-      productDescription: new FormControl(null, Validators.required),
-      productPrice: new FormControl(null, Validators.required),
-      productQuantityStock: new FormControl(null, Validators.required),
+      productName: new FormControl(this.data.name, Validators.required),
+      productDescription: new FormControl(this.data.description, Validators.required),
+      productPrice: new FormControl(this.data.price, Validators.required),
+      productQuantityStock: new FormControl(this.data.stock, Validators.required),
+      id: new FormControl(this.data.id, Validators.required),
     });
   }
 
   public addProducts() {
-    this.product.name = this.addProductForm.value.productName;
-    this.product.description = this.addProductForm.value.productDescription;
-    this.product.price = this.addProductForm.value.productPrice;
-    this.product.stock = this.addProductForm.value.productQuantityStock;
-    this.productService.addProduct(this.product);
+    console.log(this.addProductForm.value);
+
+    this.dialogRef.close(this.addProductForm.value);
   }
 }

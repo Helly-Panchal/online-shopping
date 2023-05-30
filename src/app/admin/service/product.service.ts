@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
+import { IProduct } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +35,8 @@ export class ProductService {
     return this.db.database.ref('products').child(id).remove();
   }
 
-  public updateProduct() {
-    const updateData = {
-      name: 'Vivo Phone',
-      description: 'good bettery life, fast charging',
-      price: '456',
-      stock: '10'
-    };
-    console.log("updated", this.db.database.ref('products').child('-NWa9NrvVr8ZsAtaMNKO').update(updateData));
+  public updateProduct(id: string, data: any) {
+    console.log("updated", this.db.database.ref('products').child(id).update(data));
     this.getProduct();
   }
 }

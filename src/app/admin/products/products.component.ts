@@ -13,6 +13,7 @@ import { ProductService } from '../service/product.service';
 export class ProductsComponent implements OnInit {
 
   public products!: IProduct[];
+  public updatedId!: string | null;
 
   constructor(public dialog: MatDialog, private productService: ProductService) { }
 
@@ -20,16 +21,15 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  openForm(): void {
-    this.dialog.open(AddProductFormComponent, {
-      width: '100%'
-    });
-  }
+  // openForm(): void {
+  //   this.dialog.open(AddProductFormComponent,
+  //     {
+  //       width: '100%'
+  //     });
+  // }
 
   public getProducts() {
     return this.productService.getProduct().subscribe(res => {
-      console.log(res);
-
       this.products = res;
     });
   }
@@ -41,8 +41,47 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  public updateProduct(): void {
-    this.productService.updateProduct();
+  public addProduct(): void {
+    let product: IProduct = {
+      id: '',
+      name: '',
+      description: '',
+      price: 0,
+      stock: 0,
+    };
+    const dialogRef = this.dialog.open(AddProductFormComponent, {
+      data: product,
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (res) => {
+        if (res != undefined) {
+          this.productService.addProduct({
+            name: res.productName,
+            description: res.productDescription,
+            price: res.productPrice,
+            stock: res.productQuantityStock,
+          });
+        }
+      },
+    });
   }
 
+  editProduct(product: IProduct) {
+    const dialogRef = this.dialog.open(AddProductFormComponent, {
+      data: product,
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (res) => {
+        this.updatedId = product.id;
+        if (res != undefined) {
+          this.productService.updateProduct(this.updatedId, {
+            name: res.productName,
+            description: res.productDescription,
+            price: res.productPrice,
+            stock: res.productQuantityStock,
+          });
+        }
+      },
+    });
+  }
 }
