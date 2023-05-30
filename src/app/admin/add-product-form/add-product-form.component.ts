@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductService } from '../service/product.service';
-import { IProduct } from '../interfaces/product.interface';
+import { IProduct } from '../../interfaces/product.interface';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -22,7 +21,7 @@ export class AddProductFormComponent implements OnInit {
     stock: 0
   };
 
-  constructor(private productService: ProductService, public dialogRef: MatDialogRef<AddProductFormComponent>,
+  constructor(public dialogRef: MatDialogRef<AddProductFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IProduct, public dialog: MatDialog
   ) {
   }
@@ -43,7 +42,10 @@ export class AddProductFormComponent implements OnInit {
 
   public addProducts() {
     console.log(this.addProductForm.value);
-
     this.dialogRef.close(this.addProductForm.value);
+  }
+
+  public close() {
+    this.dialogRef.close();
   }
 }

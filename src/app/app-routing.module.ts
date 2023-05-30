@@ -21,9 +21,10 @@ const routes: Routes = [
       {
         path: 'admin', component: AdminDashboardComponent,
         children: [
-          { path: 'products', component: ProductsComponent, pathMatch: 'full' },
+          { path: 'products', component: ProductsComponent },
           { path: 'orders', component: OrdersComponent },
-          { path: 'users', component: UsersComponent }
+          { path: 'users', component: UsersComponent },
+          { path: '', redirectTo: 'products', pathMatch: 'full' }
         ]
       },
       { path: 'my-orders', component: MyOrdersComponent },

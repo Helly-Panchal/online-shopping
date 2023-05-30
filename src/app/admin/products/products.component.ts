@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
-import { IProduct } from '../interfaces/product.interface';
-import { ProductService } from '../service/product.service';
+import { IProduct } from '../../interfaces/product.interface';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
