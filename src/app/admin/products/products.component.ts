@@ -14,6 +14,8 @@ export class ProductsComponent implements OnInit {
 
   public products!: IProduct[];
   public updatedId!: string | null;
+  public isLoading: boolean = true;
+  public isError: boolean = false;
 
   constructor(public dialog: MatDialog, private productService: ProductService) { }
 
@@ -22,15 +24,18 @@ export class ProductsComponent implements OnInit {
   }
 
   public getProducts() {
-    return this.productService.getProduct().subscribe(res => {
-      this.products = res;
-    });
-  }
-
-  public deleteProduct(id: string) {
-    this.productService.deleteProduct(id).then(() => {
-      console.log("Deleted");
-      this.productService.getProduct();
+    this.isLoading = true;
+    return this.productService.getProduct().subscribe({
+      next: (res) => {
+        this.products = res;
+        this.isLoading = false;
+        this.isError = false;
+      },
+      error: (error) => {
+        console.log(error);
+        this.isLoading = false;
+        this.isError = true;
+      }
     });
   }
 
@@ -43,7 +48,7 @@ export class ProductsComponent implements OnInit {
       stock: 0,
     };
     const dialogRef = this.dialog.open(AddProductFormComponent, {
-      data: product,
+      data: product
     });
     dialogRef.afterClosed().subscribe({
       next: (res) => {
@@ -75,6 +80,13 @@ export class ProductsComponent implements OnInit {
           });
         }
       },
+    });
+  }
+
+  public deleteProduct(id: string) {
+    this.productService.deleteProduct(id).then(() => {
+      console.log("Deleted");
+      this.productService.getProduct();
     });
   }
 }
