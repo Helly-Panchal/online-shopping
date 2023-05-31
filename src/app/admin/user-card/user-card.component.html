@@ -2,10 +2,15 @@
   <div class="card d-flex align-items-center justify-content-between inner-main w-100">
     <table class="table text-center m-0">
       <tbody class="d-flex align-items-center justify-content-between h-25">
-        <td class="text-wrap p-3 w-50">{{user.email}}</td>
-        <td class="w-50">{{user.role}}</td>
-        <button class="btn btn-success btn-sm edit-btn me-4">
-          <i class='fas fa-edit fa-md'></i></button>
+
+        <td class="w-25">{{user.name}}</td>
+        <td class="w-25 text-wrap p-3">{{user.email}}</td>
+        <td class="w-25">{{user.role}}</td>
+
+        <div class="w-25">
+          <button class="btn btn-success btn-sm edit-btn me-4">
+            <i class='fas fa-edit fa-md'></i></button>
+        </div>
       </tbody>
     </table>
   </div>

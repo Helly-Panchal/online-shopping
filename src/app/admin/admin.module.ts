@@ -10,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserCardComponent } from './user-card/user-card.component';
-import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { EditUserFormComponent } from './edit-user-form/edit-user-form.component
     UsersListComponent,
     AddProductFormComponent,
     UserCardComponent,
-    EditUserFormComponent
   ],
   imports: [
     CommonModule,

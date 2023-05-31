@@ -1,5 +1,17 @@
-<div class="container w-50 d-flex justify-content-center">
-  <div class="row row-cols-1 g-4 p-5">
+<div class="container w-100 d-flex justify-content-center">
+  <div class="row row-cols-1 g-3 p-5">
+    <div class="col d-flex justify-content-center align-items-center main h-25">
+      <div class="card d-flex align-items-center justify-content-between inner-main w-100 bg-dark">
+        <table class="table text-center text-light m-3 w-100">
+          <tr class="">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>action</th>
+          </tr>
+        </table>
+      </div>
+    </div>
     <ng-container *ngFor="let user of usersList">
       <app-user-card [user]="user"></app-user-card>
     </ng-container>
