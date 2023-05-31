@@ -1,0 +1,33 @@
+<form [formGroup]="editUserForm" class="p-5">
+
+  <!-- user email -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <label for="userEmail" class="form-label">Email</label>
+      <input type="text" class="form-control" id="userEmail" formControlName="userEmail">
+      <div *ngIf="editUserForm.get('userEmail')?.invalid && editUserForm.get('userEmail')?.touched">
+        <span class="error-message" *ngIf="editUserForm.get('userEmail')?.errors!['required']">
+          Please enter user email.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- user role -->
+  <div class="form-group mt-4">
+    <div class="col-sm-10 w-100">
+      <label for="userRole" class="form-label">Role</label>
+      <select class="form-select" id="role" aria-label="roles" formControlName="userRole">
+        <option selected="selected" class="role">Select role</option>
+        <option value="admin">Admin</option>
+        <option value="customer">Customer</option>
+      </select>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="p-0 mt-3 d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary buttons me-3" (click)="editUser()">Edit</button>
+    <button type="reset" class="btn btn-danger buttons" mat-dialog-close (click)="close()">Close</button>
+  </div>
+
+</form>
