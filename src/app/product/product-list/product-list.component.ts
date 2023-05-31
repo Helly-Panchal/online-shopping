@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription, debounceTime } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -12,11 +13,22 @@ export class ProductListComponent implements OnInit {
   public productList!: IProduct[];
   public isLoading: boolean = true;
   public isError: boolean = false;
+  public searchSubscription!: Subscription;
+  public filterText: string = '';
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.searchSubscription = this.productService.filter$.pipe(debounceTime(300)).subscribe({
+      next: (res) => {
+        this.filterText = res;
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
   }
 
   public getAllProducts(): void {

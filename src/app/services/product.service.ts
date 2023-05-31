@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,8 @@ import { map } from 'rxjs';
 export class ProductService {
 
   constructor(private db: AngularFireDatabase) { }
+
+  public filter$ = new BehaviorSubject<string>("");
 
   addProduct(formData: object) {
     return this.db.database.ref('products').push(formData);

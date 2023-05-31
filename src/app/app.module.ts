@@ -37,7 +37,7 @@ import { ProductModule } from './product/product.module';
     AngularFireModule.initializeApp(environment.firebase),
     AdminModule,
     ProductModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

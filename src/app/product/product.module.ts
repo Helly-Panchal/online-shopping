@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     CartComponent,
     MyOrdersComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,

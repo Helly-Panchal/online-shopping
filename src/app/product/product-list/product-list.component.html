@@ -1,5 +1,5 @@
 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 p-5">
-  <ng-container *ngFor="let product of productList">
-    <app-product-card [product]="product"></app-product-card>
+  <ng-container *ngFor="let product of productList | filterProduct : filterText">
+    <app-product-card [product]=" product"></app-product-card>
   </ng-container>
 </div>
