@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/product.interface';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,7 +9,10 @@ import { IProduct } from 'src/app/interfaces/product.interface';
 })
 export class ProductCardComponent {
   @Input() product!: IProduct;
+  // @Input() addedItems: IProduct[] = [];
   public counter: number = 0;
+
+  constructor(private cartService: CartService) { }
 
   public increaseQuantity() {
     this.counter = this.counter + 1;
@@ -21,5 +25,10 @@ export class ProductCardComponent {
     else {
       this.counter = 0;
     }
+  }
+
+  public addToCart(product: IProduct, counter: number) {
+    product.stock = counter;
+    this.cartService.addToCart(product);
   }
 }

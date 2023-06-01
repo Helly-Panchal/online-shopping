@@ -27,7 +27,7 @@
         <tr>
           <td>{{product.name}}</td>
           <td>{{product.description}}</td>
-          <td>{{product.price}}</td>
+          <td>{{product.price | currency: 'INR'}}</td>
           <td>{{product.stock}}</td>
           <td>
             <button class="btn btn-warning me-3" (click)="editProduct(product)">Edit</button>

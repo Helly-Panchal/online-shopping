@@ -29,6 +29,7 @@ export class AuthenticationService {
       };
       this.db.database.ref('users').push(user);
       if (res) {
+        localStorage.setItem('userData', JSON.stringify(res.user));
         this.router.navigate(['/layout/products']);
       }
     }).catch((error: { message: any; }) => {
@@ -41,6 +42,8 @@ export class AuthenticationService {
     this.angularFireAuth.signInWithEmailAndPassword(email, password).then((res: any) => {
       console.log('You are Successfully logged in!');
       if (res) {
+        console.log(res);
+        localStorage.setItem('userData', JSON.stringify(res.user));
         this.router.navigate(['/layout/products']);
       }
     }).catch((err: { message: any; }) => {
@@ -51,6 +54,8 @@ export class AuthenticationService {
   // Sign out
   SignOut() {
     this.angularFireAuth.signOut();
+    localStorage.removeItem('userData');
+    localStorage.removeItem('cartItems');
     this.router.navigate(['/login']);
   }
 }
