@@ -1,1 +1,21 @@
-<p>my-orders works!</p>
+<div class="container d-flex flex-column align-items-center mt-5">
+  <div class="card w-100">
+    <div class="card-header text-center">
+      <h2 class="m-0">My Orders</h2>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let order of orderedItemsContainer">
+      <li class="list-group-item p-3 d-flex justify-content-center align-items-center text-center">
+        <div class="container">
+          <p>{{order.id}}</p>
+        </div>
+        <div class="container">
+          <p>{{order.price}}</p>
+        </div>
+        <div class="container">
+          <p>{{order.status}}</p>
+        </div>
+        <div class="container"><button class="btn btn-primary btn-sm">Go to order</button></div>
+      </li>
+    </ul>
+  </div>
+</div>
