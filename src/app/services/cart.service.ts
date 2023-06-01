@@ -27,10 +27,17 @@ export class CartService {
     else {
       cart[index].stock += product.stock;
     }
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+    return localStorage.setItem('cartItems', JSON.stringify(cart));
   }
 
   emptyCart() {
     localStorage.removeItem('cartItems');
+  }
+
+  deleteOneCartItem(product: IProduct) {
+    const cart: IProduct[] = JSON.parse(localStorage.getItem('cartItems')!);
+    const index = cart.findIndex((p) => p.id == product.id);
+    cart.splice(index, 1);
+    localStorage.setItem('cartItems', JSON.stringify(cart));
   }
 }

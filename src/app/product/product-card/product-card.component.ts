@@ -30,5 +30,7 @@ export class ProductCardComponent {
   public addToCart(product: IProduct, counter: number) {
     product.stock = counter;
     this.cartService.addToCart(product);
+    alert("Item is added to cart..!!!");
+    this.counter = 0;
   }
 }

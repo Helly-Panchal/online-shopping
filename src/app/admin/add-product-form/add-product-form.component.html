@@ -31,7 +31,7 @@
   <div class="form-group mt-4">
     <div class="col-sm-10 w-100">
       <input type="number" class="form-control" id="productPrice" placeholder="Enter product price"
-        formControlName="productPrice">
+        formControlName="productPrice" min="0">
       <div *ngIf="addProductForm.get('productPrice')?.invalid && addProductForm.get('productPrice')?.touched">
         <span class="error-message" *ngIf="addProductForm.get('productPrice')?.errors!['required']">
           Please enter product price.
@@ -44,7 +44,7 @@
   <div class="form-group mt-4">
     <div class="col-sm-10 w-100">
       <input type="number" class="form-control" id="productQuantityStock" placeholder="Enter product quantity stock"
-        formControlName="productQuantityStock">
+        formControlName="productQuantityStock" min="0">
       <div
         *ngIf="addProductForm.get('productQuantityStock')?.invalid && addProductForm.get('productQuantityStock')?.touched">
         <span class="error-message" *ngIf="addProductForm.get('productQuantityStock')?.errors!['required']">

@@ -30,4 +30,9 @@ export class CartComponent implements OnInit {
     this.getCartItems();
   }
 
+  public deleteOneItem(product: IProduct) {
+    this.cartService.deleteOneCartItem(product);
+    this.getCartItems();
+  }
+
 }
