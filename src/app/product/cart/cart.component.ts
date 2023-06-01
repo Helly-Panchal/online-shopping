@@ -37,6 +37,9 @@ export class CartComponent implements OnInit {
   }
 
   public placeOrder() {
-    this.placeOrderService.placeOrder(this.cartItem);
+    this.placeOrderService.placeOrder(this.cartItem).then(() => {
+      alert("Your order has been placed successfully..!!");
+      this.emptyCart();
+    });
   }
 }

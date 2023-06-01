@@ -23,6 +23,6 @@ export class PlaceOrderService {
     }
 
     const user = JSON.parse(localStorage.getItem('userData')!);
-    this.db.database.ref('orders').child(user.uid).push(order);
+    return this.db.database.ref('orders').child(user.uid).push(order);
   }
 }
