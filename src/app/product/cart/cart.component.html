@@ -15,7 +15,7 @@
           <td scope="row">{{item.name}}</td>
           <td>{{item.stock}}</td>
           <td>{{item.price | currency: 'INR'}}</td>
-          <td><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteOneItem(item)"></i></td>
+          <td><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteOneCartItem(item)"></i></td>
         </tr>
 
       </tbody>
@@ -25,7 +25,7 @@
   <h3 class="text-center mt-4"><strong>Total price: {{totalCartPrice | currency: 'INR'}} </strong></h3>
 
   <div class="d-flex justify-content-center m-0 mt-4">
-    <button type="button" class="btn btn-success me-3">Place Order</button>
+    <button type="button" class="btn btn-success me-3" (click)="placeOrder()">Place Order</button>
     <button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
   </div>
 </ng-container>
