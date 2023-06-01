@@ -22,10 +22,10 @@
 
   <div class="d-flex justify-content-center m-0 mt-4">
     <button type="button" class="btn btn-success me-3">Place Order</button>
-    <button type="button" class="btn btn-danger">Empty Cart</button>
+    <button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
   </div>
 </ng-container>
 
 <ng-template #empty>
-  <p class="p-5">Cart is empty..!!</p>
+  <h1 class="p-5 text-center">Cart is empty..!!</h1>
 </ng-template>
