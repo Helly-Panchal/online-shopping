@@ -14,7 +14,9 @@
         <div class="container">
           <p>{{order.status}}</p>
         </div>
-        <div class="container"><button class="btn btn-primary btn-sm">Go to order</button></div>
+        <div class="container">
+          <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
+        </div>
       </li>
     </ul>
   </div>

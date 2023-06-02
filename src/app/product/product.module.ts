@@ -7,6 +7,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { OrdersDetailComponent } from './orders-detail/orders-detail.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     MyOrdersComponent,
     ProductListComponent,
     ProductCardComponent,
-    FilterPipe
+    FilterPipe,
+    OrdersDetailComponent
   ],
   imports: [
     CommonModule,
