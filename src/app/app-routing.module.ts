@@ -12,6 +12,7 @@ import { UsersListComponent } from './admin/users-list/users-list.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductsComponent } from './admin/products/products.component';
 import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
       { path: 'products', component: ProductListComponent },
       { path: 'cart', component: CartComponent },
       { path: 'profile', component: UserProfileComponent },
-    ], canActivate: [AuthGuard]
+    ], canActivate: [AuthGuard, RoleGuard]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
