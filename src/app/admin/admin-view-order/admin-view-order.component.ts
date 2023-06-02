@@ -19,10 +19,22 @@ export class AdminViewOrderComponent {
   }
 
   public ngOnInit(): void {
-    this.placeOrderService.getOrderedItems();
+    this.placeOrderService.getAllOrdersOfAllUsers();
   }
 
   public close() {
     this.dialogRef.close();
+  }
+
+  public completeOrder() {
+    if (this.data.status === 'pending') {
+      this.placeOrderService.completeOrder(this.data.uid!, this.data.id);
+      this.close();
+    }
+    this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
+      next: ((res: any) => {
+        this.data = res;
+      })
+    });
   }
 }

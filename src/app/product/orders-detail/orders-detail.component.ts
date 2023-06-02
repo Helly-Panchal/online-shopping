@@ -28,8 +28,7 @@ export class OrdersDetailComponent implements OnInit {
 
   public cancelOrder() {
     if (this.data.status === 'pending') {
-      this.data.status = 'cancel';
-      this.placeOrderService.cancelOrder(this.data.status, this.data.id);
+      this.placeOrderService.cancelOrder(this.data.id);
       this.close();
     }
     this.placeOrderService.getOrderedItems().subscribe({

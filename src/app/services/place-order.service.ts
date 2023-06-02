@@ -48,9 +48,15 @@ export class PlaceOrderService {
   }
 
   // user can cancel order
-  cancelOrder(status: string, orderId: string) {
+  cancelOrder(orderId: string) {
     const user = JSON.parse(localStorage.getItem('userData')!);
-    return this.db.database.ref(`orders/${user.uid}`).child(orderId).update({ status: status });
+    return this.db.database.ref(`orders/${user.uid}`).child(orderId).update({ status: 'cancel' });
+  }
+
+  // admin can complete order
+  completeOrder(userId: string, orderId: string) {
+    const user = JSON.parse(localStorage.getItem('userData')!);
+    return this.db.database.ref(`orders/${userId}`).child(orderId).update({ status: 'completed' });
   }
 
   // get orders of all the users

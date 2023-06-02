@@ -31,7 +31,7 @@
     <p><strong>Payment Type: </strong>{{data.paymentMode}}</p>
 
     <ng-container *ngIf="data.status === 'pending'">
-      <button type="button" class="btn btn-danger">Complete Order</button>
+      <button type="button" class="btn btn-danger" (click)="completeOrder()">Complete Order</button>
     </ng-container>
   </div>
 </div>
