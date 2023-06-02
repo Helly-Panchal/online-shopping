@@ -61,16 +61,16 @@ export class HeaderComponent {
         } else {
           this.isLoggedIn = false;
           this.isAdmin = false;
-          this.links = [
-            {
-              title: 'Home',
-              href: '/home',
-            },
-            {
-              title: 'Login',
-              href: '/login',
-            },
-          ];
+          // this.links = [
+          //   {
+          //     title: 'Home',
+          //     href: '/home',
+          //   },
+          //   {
+          //     title: 'Login',
+          //     href: '/login',
+          //   },
+          // ];
         }
       },
     });
