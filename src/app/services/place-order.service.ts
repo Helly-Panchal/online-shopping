@@ -55,7 +55,6 @@ export class PlaceOrderService {
 
   // admin can complete order
   completeOrder(userId: string, orderId: string) {
-    const user = JSON.parse(localStorage.getItem('userData')!);
     return this.db.database.ref(`orders/${userId}`).child(orderId).update({ status: 'completed' });
   }
 

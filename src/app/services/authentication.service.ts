@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -13,7 +13,9 @@ export class AuthenticationService {
   userData: Observable<any>;
   public isUserLoggedIn: boolean = false;
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
+  public authSubscription!: Subscription;
+
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,) {
     this.userData = angularFireAuth.authState;
   }
 

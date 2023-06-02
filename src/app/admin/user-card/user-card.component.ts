@@ -28,7 +28,7 @@ export class UserCardComponent {
         this.updatedId = user.id;
         if (res != undefined) {
           this.userService.updateUser(this.updatedId, {
-            email: res.userEmail,
+            name: res.userName,
             role: res.userRole,
           });
         }

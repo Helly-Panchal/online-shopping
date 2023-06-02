@@ -23,7 +23,7 @@ export class EditUserFormComponent implements OnInit {
   public initializeForm(): void {
     this.editUserForm = new FormGroup({
       id: new FormControl(this.data.id, Validators.required),
-      userEmail: new FormControl(this.data.email, Validators.required),
+      userName: new FormControl(this.data.name, Validators.required),
       userRole: new FormControl(this.data.role, Validators.required)
     });
   }
