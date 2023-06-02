@@ -1,22 +1,54 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthenticationService {
-  userData: Observable<any>;
+  public userData!: Observable<any>;
   public isUserLoggedIn: boolean = false;
 
   public authSubscription!: Subscription;
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,) {
+  public user$ = new BehaviorSubject<IUser | null>(null);
+
+  // constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,) {
+  //   this.userData = angularFireAuth.authState;
+  // }
+
+  constructor(
+    private _fireAuth: AngularFireAuth,
+    private userService: UserService,
+    private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,
+  ) {
     this.userData = angularFireAuth.authState;
+    this._fireAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.authSubscription = this.userService.getUsers().subscribe({
+          next: (users) => {
+            const userData: IUser = users.filter((u) => u.uid === user.uid)[0];
+            this.user$.next({
+              uid: userData.uid,
+              name: userData.name,
+              email: userData.email,
+              role: userData.role,
+            });
+            localStorage.setItem('userData', JSON.stringify(userData));
+          },
+        });
+      } else {
+        this.user$.next(null);
+        localStorage.removeItem('userData');
+        localStorage.removeItem('cartItems');
+      }
+    });
   }
 
   // Sign up
@@ -31,7 +63,7 @@ export class AuthenticationService {
       };
       this.db.database.ref('users').push(user);
       if (res) {
-        localStorage.setItem('userData', JSON.stringify(res.user));
+        // localStorage.setItem('userData', JSON.stringify(res.user));
         this.router.navigate(['/layout/products']);
       }
     }).catch((error: { message: any; }) => {
@@ -45,7 +77,6 @@ export class AuthenticationService {
       console.log('You are Successfully logged in!');
       if (res) {
         console.log(res);
-        localStorage.setItem('userData', JSON.stringify(res.user));
         this.router.navigate(['/layout/products']);
       }
     }).catch((err: { message: any; }) => {
@@ -56,8 +87,6 @@ export class AuthenticationService {
   // Sign out
   SignOut() {
     this.angularFireAuth.signOut();
-    localStorage.removeItem('userData');
-    localStorage.removeItem('cartItems');
     this.router.navigate(['/login']);
   }
 }

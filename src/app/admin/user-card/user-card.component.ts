@@ -25,9 +25,9 @@ export class UserCardComponent {
     });
     dialogRef.afterClosed().subscribe({
       next: (res) => {
-        this.updatedId = user.id;
+        this.updatedId = user.id!;
         if (res != undefined) {
-          this.userService.updateUser(this.updatedId, {
+          this.userService.updateUser(this.updatedId!, {
             name: res.userName,
             role: res.userRole,
           });
