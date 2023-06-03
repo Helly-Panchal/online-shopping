@@ -11,7 +11,7 @@ import { LayoutComponent } from './main/layout/layout.component';
 import { FooterComponent } from './main/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileComponent } from './main/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AdminModule } from './admin/admin.module';

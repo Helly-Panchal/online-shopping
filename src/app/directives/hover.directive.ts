@@ -15,7 +15,7 @@ export class HoverDirective {
   onMouseOver() {
     this.scale = 'scale(1.05)';
     // this.background = '#dee2ff'
-    this.background = '#edf2fb';
+    this.background = '#f6f6f6';
   }
 
   @HostListener('mouseout')

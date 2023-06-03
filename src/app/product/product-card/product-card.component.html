@@ -1,13 +1,13 @@
 <div class="col">
   <div class="card" appHover>
     <div class="card-header p-2 d-flex justify-content-center align-items-center">
-      <h4 class="card-title m-0">{{product.name}}</h4>
+      <h4 class="card-title m-0"><strong>{{product.name}}</strong></h4>
     </div>
     <div class="card-body text-center">
       <p class="card-text">{{product.description}}</p>
       <p class="card-text">{{product.price | currency: 'INR'}}</p>
 
-      <div class="input-group quantity mb-3 p-3">
+      <div class="input-group quantity p-4">
         <span class="input-group-text" (click)="decreaseQuantity()"><i class="fa-solid fa-minus"></i></span>
         <input type="text" [(ngModel)]="counter" class="form-control form-control-sm text-center" aria-label="quantity">
         <span class="input-group-text" (click)="increaseQuantity()"><i class="fa-solid fa-plus"></i></span>

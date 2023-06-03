@@ -1,7 +1,22 @@
 <div class="container d-flex flex-column align-items-center mt-5">
   <div class="card w-100">
-    <div class="card-header text-center">
-      <h2 class="m-0">My Orders</h2>
+    <div class="card-header bg-dark text-light text-center">
+      <ul class="list-group list-group-flush heading">
+        <li class="list-group-item bg-dark text-light d-flex justify-content-center align-items-center text-center">
+          <div class="container">
+            <p>Order Id</p>
+          </div>
+          <div class="container">
+            <p>Price</p>
+          </div>
+          <div class="container">
+            <p>Status</p>
+          </div>
+          <div class="container">
+            <p>View Order</p>
+          </div>
+        </li>
+      </ul>
     </div>
     <ul class="list-group list-group-flush" *ngFor="let order of orderedItemsContainer">
       <li class="list-group-item p-3 d-flex justify-content-center align-items-center text-center">
