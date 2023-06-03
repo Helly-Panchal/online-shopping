@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './main/header/header.component';
 import { LayoutComponent } from './main/layout/layout.component';
-import { FooterComponent } from './main/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './main/user-profile/user-profile.component';
@@ -24,7 +23,6 @@ import { HoverDirective } from './directives/hover.directive';
     AppComponent,
     HeaderComponent,
     LayoutComponent,
-    FooterComponent,
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
