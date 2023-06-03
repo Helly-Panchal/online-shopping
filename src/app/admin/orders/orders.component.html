@@ -1,23 +1,42 @@
 <div class="container d-flex flex-column align-items-center mt-5">
-  <div class="card w-100">
-    <div class="card-header text-center">
-      <h2 class="m-0">Orders</h2>
+  <div class="card w-100 mb-5">
+    <div class="card-header bg-dark text-light text-center">
+      <ul class="list-group list-group-flush heading">
+        <li
+          class="list-group-item p-3 m-0 bg-dark text-light d-flex justify-content-center align-items-center text-center">
+          <div class="container data-id">
+            <p>User Id</p>
+          </div>
+          <div class="container data-id">
+            <p>Order Id</p>
+          </div>
+          <div class="container data">
+            <p>Price</p>
+          </div>
+          <div class="container data">
+            <p>Status</p>
+          </div>
+          <div class="container data">
+            <p>View Order</p>
+          </div>
+        </li>
+      </ul>
     </div>
     <ul class="list-group list-group-flush" *ngFor="let order of allOrdersList">
       <li class="list-group-item p-3 d-flex justify-content-center align-items-center text-center">
-        <div class="container">
+        <div class="container data-id">
           <p>{{order.uid}}</p>
         </div>
-        <div class="container">
+        <div class="container data-id">
           <p>{{order.id}}</p>
         </div>
-        <div class="container">
+        <div class="container data">
           <p>{{order.price}}</p>
         </div>
-        <div class="container">
+        <div class="container data">
           <p>{{order.status}}</p>
         </div>
-        <div class="container">
+        <div class="container data">
           <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
         </div>
       </li>

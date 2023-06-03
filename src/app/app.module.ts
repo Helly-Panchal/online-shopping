@@ -17,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductModule } from './product/product.module';
 import { HoverDirective } from './directives/hover.directive';
+import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HoverDirective } from './directives/hover.directive';
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
+    PageNotFoundComponent,
     // HoverDirective,
   ],
   imports: [
