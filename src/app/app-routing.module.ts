@@ -13,6 +13,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ProductsComponent } from './admin/products/products.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
     ]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
