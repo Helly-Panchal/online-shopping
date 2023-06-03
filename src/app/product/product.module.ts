@@ -8,6 +8,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
 import { OrdersDetailComponent } from './orders-detail/orders-detail.component';
+import { HoverDirective } from '../directives/hover.directive';
 
 
 @NgModule({
@@ -17,12 +18,13 @@ import { OrdersDetailComponent } from './orders-detail/orders-detail.component';
     ProductListComponent,
     ProductCardComponent,
     FilterPipe,
-    OrdersDetailComponent
+    OrdersDetailComponent,
+    HoverDirective
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ProductModule { }

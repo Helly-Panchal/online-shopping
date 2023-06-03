@@ -19,9 +19,16 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'layout', component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        redirectTo: 'products',
+        pathMatch: 'full'
+      },
+      {
         path: 'admin', component: AdminDashboardComponent,
+        canActivate: [RoleGuard],
         children: [
           { path: 'products', component: ProductsComponent },
           { path: 'orders', component: OrdersComponent },
@@ -33,7 +40,7 @@ const routes: Routes = [
       { path: 'products', component: ProductListComponent },
       { path: 'cart', component: CartComponent },
       { path: 'profile', component: UserProfileComponent },
-    ], canActivate: [AuthGuard, RoleGuard]
+    ]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductModule } from './product/product.module';
+import { HoverDirective } from './directives/hover.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductModule } from './product/product.module';
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
+    // HoverDirective,
   ],
   imports: [
     BrowserModule,

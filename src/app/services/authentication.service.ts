@@ -19,16 +19,11 @@ export class AuthenticationService {
 
   public user$ = new BehaviorSubject<IUser | null>(null);
 
-  // constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,) {
-  //   this.userData = angularFireAuth.authState;
-  // }
-
   constructor(
     private _fireAuth: AngularFireAuth,
     private userService: UserService,
     private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase,
   ) {
-    this.userData = angularFireAuth.authState;
     this._fireAuth.onAuthStateChanged((user) => {
       if (user) {
         this.authSubscription = this.userService.getUsers().subscribe({
@@ -41,6 +36,12 @@ export class AuthenticationService {
               role: userData.role,
             });
             localStorage.setItem('userData', JSON.stringify(userData));
+            if (userData.role === 'admin') {
+              this.router.navigateByUrl('layout/admin/products');
+            }
+            else {
+              this.router.navigateByUrl('/layout');
+            }
           },
         });
       } else {
@@ -73,15 +74,7 @@ export class AuthenticationService {
 
   // Sign in
   SignIn(email: string, password: string) {
-    this.angularFireAuth.signInWithEmailAndPassword(email, password).then((res: any) => {
-      console.log('You are Successfully logged in!');
-      if (res) {
-        console.log(res);
-        this.router.navigate(['/layout/products']);
-      }
-    }).catch((err: { message: any; }) => {
-      console.log('Something is wrong:', err.message);
-    });
+    return this.angularFireAuth.signInWithEmailAndPassword(email, password);
   }
 
   // Sign out
