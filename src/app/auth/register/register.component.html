@@ -20,8 +20,8 @@
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12">
       <label for="inputName" class="form-label">Name</label>
       <input type="text" class="form-control" id="inputName" placeholder="Enter your name" name="name" ngModel
-        #name="ngModel">
-      <span class="error-message" *ngIf="name.touched">Name is required!!</span>
+        #name="ngModel" required>
+      <span class="error-message" *ngIf="name.touched && !name.valid">Name is required!!</span>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
@@ -34,8 +34,8 @@
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
       <label for="inputPassword4" class="form-label">Password</label>
       <input type="password" class="form-control" id="inputPassword4" placeholder="Enter your Password" name="password"
-        ngModel #pass="ngModel">
-      <span class="error-message" *ngIf="pass.touched">Password is required!!</span>
+        ngModel #pass="ngModel" required>
+      <span class="error-message" *ngIf="pass.touched && !pass.valid">Password is required!!</span>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
@@ -45,7 +45,7 @@
         <option value="admin">Admin</option>
         <option value="customer">Customer</option>
       </select>
-      <span class="error-message" *ngIf="role.touched">Role is required!!</span>
+      <span class="error-message" *ngIf="role.touched && !role.valid">Role is required!!</span>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 d-flex justify-content-center">
