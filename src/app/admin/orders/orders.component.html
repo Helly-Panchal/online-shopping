@@ -1,4 +1,13 @@
-<div class="container d-flex flex-column align-items-center mt-5">
+<p class="text-center p-5" *ngIf="isLoading">Wait for few seconds...</p>
+<p class="text-center p-5" *ngIf="!isLoading && isError">
+  Some error occurred while loading the Orders Details.
+</p>
+<p class="text-center p-5" *ngIf="!isLoading && !isError && allOrdersList.length === 0">
+  No Orders yet.
+</p>
+
+<div class="container d-flex flex-column align-items-center mt-5"
+  *ngIf="!isLoading && !isError && allOrdersList.length > 0">
   <div class="card w-100 mb-5">
     <div class="card-header bg-dark text-light text-center">
       <ul class="list-group list-group-flush heading">

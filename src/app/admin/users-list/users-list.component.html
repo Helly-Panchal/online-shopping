@@ -1,6 +1,14 @@
-<div class="container d-flex justify-content-center">
+<p class="text-center p-5" *ngIf="isLoading">Wait for few seconds...</p>
+<p class="text-center p-5" *ngIf="!isLoading && isError">
+  Some error occurred while loading the Orders Details.
+</p>
+<p class="text-center p-5" *ngIf="!isLoading && !isError && usersList.length === 0">
+  No Orders yet.
+</p>
+
+<div class="container d-flex justify-content-center pb-5" *ngIf="!isLoading && !isError && usersList.length > 0">
   <div class="row g-3 p-5">
-    <div class="col d-flex justify-content-center align-items-center main h-25">
+    <div class="col d-flex justify-content-center align-items-center">
       <div class="card d-flex align-items-center justify-content-between w-100 bg-dark">
         <table class="table text-center text-light m-3 w-100">
           <tr class="">

@@ -11,6 +11,8 @@ import { AdminViewOrderComponent } from '../admin-view-order/admin-view-order.co
 })
 export class OrdersComponent implements OnInit {
   public allOrdersList: IOrder[] = [];
+  public isLoading: boolean = true;
+  public isError: boolean = false;
 
   constructor(private placeOrderService: PlaceOrderService, public dialog: MatDialog) { }
 
@@ -19,10 +21,18 @@ export class OrdersComponent implements OnInit {
   }
 
   public getAllOrdersOfAllUsers() {
+    this.isLoading = true;
     this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
       next: ((res) => {
         this.allOrdersList = res;
+        this.isLoading = false;
+        this.isError = false;
         console.log(res);
+      }),
+      error: ((error) => {
+        console.log(error);
+        this.isLoading = false;
+        this.isError = true;
       })
     })
   }
