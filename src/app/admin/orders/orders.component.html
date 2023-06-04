@@ -6,49 +6,39 @@
   No Orders yet.
 </p>
 
-<div class="container d-flex flex-column align-items-center mt-5"
+<div class="container d-flex flex-column align-items-center justify-content-center mt-5 pb-5"
   *ngIf="!isLoading && !isError && allOrdersList.length > 0">
-  <div class="card w-100 mb-5">
-    <div class="card-header bg-dark text-light text-center">
-      <ul class="list-group list-group-flush heading">
-        <li
-          class="list-group-item p-3 m-0 bg-dark text-light d-flex justify-content-center align-items-center text-center">
-          <div class="container data-id">
-            <p>User Id</p>
-          </div>
-          <div class="container data-id">
-            <p>Order Id</p>
-          </div>
-          <div class="container data">
-            <p>Price</p>
-          </div>
-          <div class="container data">
-            <p>Status</p>
-          </div>
-          <div class="container data">
-            <p>View Order</p>
-          </div>
-        </li>
-      </ul>
+  <div class="row g-3 w-100">
+    <div class="card d-flex align-items-center justify-content-between w-100 bg-dark">
+      <table class="table text-center text-light m-3 w-100">
+        <tr class="">
+          <th class="id">User ID</th>
+          <th class="id">Order ID</th>
+          <th class="val">Price</th>
+          <th class="val">Status</th>
+          <th class="val">action</th>
+        </tr>
+      </table>
     </div>
-    <ul class="list-group list-group-flush" *ngFor="let order of allOrdersList">
-      <li class="list-group-item p-3 d-flex justify-content-center align-items-center text-center">
-        <div class="container data-id">
-          <p>{{order.uid}}</p>
-        </div>
-        <div class="container data-id">
-          <p>{{order.id}}</p>
-        </div>
-        <div class="container data">
-          <p>{{order.price}}</p>
-        </div>
-        <div class="container data">
-          <p>{{order.status}}</p>
-        </div>
-        <div class="container data">
-          <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
-        </div>
-      </li>
-    </ul>
   </div>
+  <br>
+  <ng-container *ngFor="let order of allOrdersList">
+    <div class="col d-flex justify-content-center m-2 w-100">
+      <div class="card d-flex align-items-center justify-content-between w-100">
+        <table class="table text-center m-0">
+          <tbody class="d-flex align-items-center justify-content-between h-25">
+
+            <td class="text-wrap ps-5 id">{{order.uid}}</td>
+            <td class="text-wrap p-3 id">{{order.id}}</td>
+            <td class="val">{{order.price}}</td>
+            <td class="val">{{order.status}}</td>
+
+            <div class="val">
+              <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
+            </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
 </div>
