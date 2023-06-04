@@ -10,13 +10,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  // public name!: string;
-  // public email!: string;
-  // public password!: string;
-  // public role!: string;
+
   public isError: boolean = false;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private db: AngularFireDatabase) { }
+  constructor(private authenticationService: AuthenticationService, private db: AngularFireDatabase) { }
 
   signUp(form: NgForm) {
     this.authenticationService.SignUp(form.value.email, form.value.password).then((res: any) => {

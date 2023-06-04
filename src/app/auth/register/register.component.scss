@@ -5,3 +5,17 @@
 .container{
   height: 100vh;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+  box-shadow: 1px 1px 5px red;
+}
+
+input.ng-touched {
+  border: 1px solid red;
+  box-shadow: 1px 1px 5px red;
+}
+
+.error-message {
+  color: red;
+}
