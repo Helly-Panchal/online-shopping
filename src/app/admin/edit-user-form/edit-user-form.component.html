@@ -7,7 +7,7 @@
       <input type="text" class="form-control" id="userName" formControlName="userName">
       <div *ngIf="editUserForm.get('userName')?.invalid && editUserForm.get('userName')?.touched">
         <span class="error-message" *ngIf="editUserForm.get('userName')?.errors!['required']">
-          Please enter user name.
+          User name is required.
         </span>
       </div>
     </div>
