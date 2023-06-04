@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
 export class MyOrdersComponent implements OnInit {
 
   public orderedItemsContainer: IOrder[] = [];
+  public isLoading: boolean = true;
+  public isError: boolean = false;
 
   public order$ = new Observable<IOrder>();
 
@@ -23,9 +25,17 @@ export class MyOrdersComponent implements OnInit {
   }
 
   public getOrderedItems() {
+    this.isLoading = true;
     this.placeOrderService.getOrderedItems().subscribe({
       next: ((res: any) => {
         this.orderedItemsContainer = res;
+        this.isLoading = false;
+        this.isError = false;
+      }),
+      error: ((error) => {
+        console.log(error);
+        this.isLoading = false;
+        this.isError = true;
       })
     });
   }

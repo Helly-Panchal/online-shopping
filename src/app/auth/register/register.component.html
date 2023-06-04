@@ -1,8 +1,21 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100">
+
+  <ng-container *ngIf="isError === true">
+    <div
+      class="alert alert-danger alert-dismissible fade show d-flex align-items-baseline justify-content-between p-3 w-50"
+      role="alert">
+      <div>
+        <i class="fas fa-exclamation-triangle fa-lg me-2"></i>
+        Email Id already exists.Please login or try another Email Id to register.
+      </div>
+      <button type="button" class="btn m-0 p-0" data-bs-dismiss="alert" aria-label="Close"><i
+          class="fas fa-close fa-lg"></i></button>
+    </div>
+  </ng-container>
+
   <h1 class="text-center">Register</h1>
 
-  <form class="d-flex flex-column justify-content-center align-items-center w-50" #registerForm="ngForm"
-    (ngSubmit)="onSubmit(registerForm)">
+  <form class="d-flex flex-column justify-content-center align-items-center w-50" #registerForm="ngForm">
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12">
       <label for="inputName" class="form-label">Name</label>

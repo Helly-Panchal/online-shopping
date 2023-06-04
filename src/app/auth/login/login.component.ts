@@ -9,21 +9,21 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  public isError: boolean = false;
+
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   onSubmit(loginForm: NgForm) {
     console.log(loginForm);
   }
 
-  public email!: string;
-  public password!: string;
-
   signIn(form: NgForm) {
     this.authenticationService.SignIn(form.value.email, form.value.password).then((res: any) => {
       console.log('You are Successfully logged in!', res);
-      this.email = '';
-      this.password = '';
+      form.reset();
     }).catch((err: { message: any; }) => {
+      this.isError = true;
+      form.reset();
       console.log('Something is wrong:', err.message);
     });
   }

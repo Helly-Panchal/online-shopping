@@ -53,23 +53,8 @@ export class AuthenticationService {
   }
 
   // Sign up
-  SignUp(email: string, password: string, role: string, name: string) {
-    this.angularFireAuth.createUserWithEmailAndPassword(email, password).then((res: any) => {
-      console.log('You are Successfully signed up!', res);
-      const user = {
-        email: res.user?.email,
-        uid: res.user?.uid,
-        role: role,
-        name: name
-      };
-      this.db.database.ref('users').push(user);
-      if (res) {
-        // localStorage.setItem('userData', JSON.stringify(res.user));
-        this.router.navigate(['/layout/products']);
-      }
-    }).catch((error: { message: any; }) => {
-      console.log('Something is wrong:', error.message);
-    });
+  SignUp(email: string, password: string) {
+    return this.angularFireAuth.createUserWithEmailAndPassword(email, password);
   }
 
   // Sign in

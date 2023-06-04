@@ -31,46 +31,46 @@ export class HeaderComponent {
             this.links = [
               {
                 title: 'Admin',
-                href: 'admin',
+                href: '/layout/admin',
               },
               {
                 title: 'Profile',
-                href: 'profile',
+                href: '/layout/profile',
               },
             ];
           } else {
             this.links = [
               {
                 title: 'Products',
-                href: 'products',
+                href: '/layout/products',
               },
               {
                 title: 'Cart',
-                href: 'cart',
+                href: '/layout/cart',
               },
               {
                 title: 'My Orders',
-                href: 'my-orders',
+                href: '/layout/my-orders',
               },
               {
                 title: 'Profile',
-                href: 'profile',
+                href: '/layout/profile',
               },
             ];
           }
         } else {
           this.isLoggedIn = false;
           this.isAdmin = false;
-          // this.links = [
-          //   {
-          //     title: 'Home',
-          //     href: '/home',
-          //   },
-          //   {
-          //     title: 'Login',
-          //     href: '/login',
-          //   },
-          // ];
+          this.links = [
+            {
+              title: 'Register',
+              href: 'register',
+            },
+            {
+              title: 'Login',
+              href: 'login',
+            },
+          ];
         }
       },
     });

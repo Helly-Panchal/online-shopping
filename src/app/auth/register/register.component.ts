@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -8,24 +10,31 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  public name!: string;
-  public email!: string;
-  public password!: string;
-  public role!: string;
+  // public name!: string;
+  // public email!: string;
+  // public password!: string;
+  // public role!: string;
+  public isError: boolean = false;
 
-  constructor(private authenticationService: AuthenticationService) { }
-
-  onSubmit(register: NgForm) {
-    console.log(register);
-  }
+  constructor(private authenticationService: AuthenticationService, private router: Router, private db: AngularFireDatabase) { }
 
   signUp(form: NgForm) {
-    this.authenticationService.SignUp(form.value.email, form.value.password, form.value.role, form.value.name);
-    this.name = '';
-    this.email = '';
-    this.password = '';
-    this.role = '';
-    console.log(form.value.role);
-
+    this.authenticationService.SignUp(form.value.email, form.value.password).then((res: any) => {
+      console.log('You are Successfully signed up!', res);
+      const user = {
+        email: res.user?.email,
+        uid: res.user?.uid,
+        role: form.value.role,
+        name: form.value.name
+      };
+      this.db.database.ref('users').push(user);
+      if (res) {
+        form.reset();
+      }
+    }).catch((error: { message: any; }) => {
+      this.isError = true;
+      form.reset();
+      console.log('Something is wrong:', error.message);
+    });
   }
 }

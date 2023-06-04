@@ -1,4 +1,17 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100">
+  <ng-container *ngIf="isError === true">
+    <div
+      class="alert alert-danger alert-dismissible fade show d-flex align-items-baseline justify-content-between p-3 w-50"
+      role="alert">
+      <div>
+        <i class="fas fa-exclamation-triangle fa-lg me-2"></i>
+        Incorrect Email Id or Password.
+      </div>
+      <button type="button" class="btn m-0 p-0" data-bs-dismiss="alert" aria-label="Close"><i
+          class="fas fa-close fa-lg"></i></button>
+    </div>
+  </ng-container>
+
   <h1 class="text-center">Login</h1>
 
   <form class="d-flex flex-column justify-content-center align-items-center w-50" #loginForm="ngForm"
