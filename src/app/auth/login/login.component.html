@@ -29,11 +29,12 @@
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-3">
       <label for="inputPassword4" class="form-label">Password</label>
       <input type="password" class="form-control" id="inputPassword4" placeholder="Enter your Password" name="password"
-        ngModel>
+        ngModel #pass="ngModel">
+      <span class="error-message" *ngIf="pass.touched">Password is required!!</span>
     </div>
 
     <div class="col col-12 col-xs-10 col-sm-11 col-md-12 mt-4 d-flex justify-content-center">
-      <button class="btn btn-success w-50" (click)="signIn(loginForm)">Login</button>
+      <button class="btn btn-success w-50" [disabled]="!loginForm.valid" (click)="signIn(loginForm)">Login</button>
     </div>
 
   </form>
