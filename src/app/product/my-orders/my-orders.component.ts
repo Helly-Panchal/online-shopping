@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
 import { OrdersDetailComponent } from '../orders-detail/orders-detail.component';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss']
 })
-export class MyOrdersComponent implements OnInit {
+export class MyOrdersComponent implements OnInit, OnDestroy {
 
   public orderedItemsContainer: IOrder[] = [];
   public isLoading: boolean = true;
   public isError: boolean = false;
+  public placeOrderSubscription!: Subscription;
+  public viewOrderSubscription!: Subscription;
 
   public order$ = new Observable<IOrder>();
 
@@ -24,9 +26,14 @@ export class MyOrdersComponent implements OnInit {
     this.getOrderedItems();
   }
 
+  public ngOnDestroy(): void {
+    this.placeOrderSubscription.unsubscribe();
+    this.viewOrderSubscription.unsubscribe();
+  }
+
   public getOrderedItems() {
     this.isLoading = true;
-    this.placeOrderService.getOrderedItems().subscribe({
+    this.placeOrderSubscription = this.placeOrderService.getOrderedItems().subscribe({
       next: ((res: any) => {
         this.orderedItemsContainer = res;
         this.isLoading = false;
@@ -45,7 +52,7 @@ export class MyOrdersComponent implements OnInit {
       data: order,
       width: '50%'
     });
-    dialogRef.afterClosed().subscribe({
+    this.viewOrderSubscription = dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res != undefined) {
           this.placeOrderService.getOrderedItems();

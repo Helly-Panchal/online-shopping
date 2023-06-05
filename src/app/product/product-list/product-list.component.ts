@@ -10,11 +10,12 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
+  public filterText: string = '';
   public productList!: IProduct[];
   public isLoading: boolean = true;
   public isError: boolean = false;
   public searchSubscription!: Subscription;
-  public filterText: string = '';
+  public getProductSubscription!: Subscription;
 
   constructor(private productService: ProductService) { }
 
@@ -29,11 +30,12 @@ export class ProductListComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
+    this.getProductSubscription.unsubscribe();
   }
 
   public getAllProducts(): void {
     this.isLoading = true;
-    this.productService.getProduct().subscribe({
+    this.getProductSubscription = this.productService.getProduct().subscribe({
       next: (res) => {
         this.productList = res;
         this.isLoading = false;

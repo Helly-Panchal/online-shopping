@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -8,9 +8,8 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   public filterText: string = '';
-
   public isLoggedIn: boolean = false;
   public isAdmin: boolean = false;
 
@@ -20,8 +19,7 @@ export class HeaderComponent {
 
   constructor(private productService: ProductService, private authService: AuthenticationService) { }
 
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.authSubscription = this.authService.user$.subscribe({
       next: (user) => {
         if (user) {
@@ -74,6 +72,10 @@ export class HeaderComponent {
         }
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 
   public search(filterText: any) {

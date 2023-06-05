@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
@@ -9,8 +10,9 @@ import { PlaceOrderService } from 'src/app/services/place-order.service';
   templateUrl: './admin-view-order.component.html',
   styleUrls: ['./admin-view-order.component.scss']
 })
-export class AdminViewOrderComponent {
+export class AdminViewOrderComponent implements OnInit, OnDestroy {
   public item!: IProduct[];
+  public subscription!: Subscription;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: IOrder, public dialogRef: MatDialogRef<AdminViewOrderComponent>,
     private placeOrderService: PlaceOrderService) {
@@ -22,6 +24,10 @@ export class AdminViewOrderComponent {
     this.placeOrderService.getAllOrdersOfAllUsers();
   }
 
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   public close() {
     this.dialogRef.close();
   }
@@ -31,7 +37,7 @@ export class AdminViewOrderComponent {
       this.placeOrderService.completeOrder(this.data.uid!, this.data.id);
       this.close();
     }
-    this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
+    this.subscription = this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
       next: ((res: any) => {
         this.data = res;
       })

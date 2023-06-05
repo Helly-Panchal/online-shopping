@@ -1,5 +1,6 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
@@ -9,8 +10,9 @@ import { PlaceOrderService } from 'src/app/services/place-order.service';
   templateUrl: './orders-detail.component.html',
   styleUrls: ['./orders-detail.component.scss']
 })
-export class OrdersDetailComponent implements OnInit {
+export class OrdersDetailComponent implements OnInit, OnDestroy {
   public item!: IProduct[];
+  public getOrderSubscription!: Subscription;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: IOrder, public dialogRef: MatDialogRef<OrdersDetailComponent>,
     private placeOrderService: PlaceOrderService) {
@@ -20,6 +22,10 @@ export class OrdersDetailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.placeOrderService.getOrderedItems();
+  }
+
+  public ngOnDestroy(): void {
+    this.getOrderSubscription.unsubscribe();
   }
 
   public close() {

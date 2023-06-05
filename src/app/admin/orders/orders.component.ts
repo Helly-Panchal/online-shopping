@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
 import { AdminViewOrderComponent } from '../admin-view-order/admin-view-order.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   public allOrdersList: IOrder[] = [];
   public isLoading: boolean = true;
   public isError: boolean = false;
+
+  public subscription: Subscription[] = [];
 
   constructor(private placeOrderService: PlaceOrderService, public dialog: MatDialog) { }
 
@@ -20,9 +23,15 @@ export class OrdersComponent implements OnInit {
     this.getAllOrdersOfAllUsers();
   }
 
+  ngOnDestroy(): void {
+    this.subscription.forEach((element) => {
+      element.unsubscribe();
+    })
+  }
+
   public getAllOrdersOfAllUsers() {
     this.isLoading = true;
-    this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
+    this.subscription.push(this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
       next: ((res) => {
         this.allOrdersList = res;
         this.isLoading = false;
@@ -34,7 +43,7 @@ export class OrdersComponent implements OnInit {
         this.isLoading = false;
         this.isError = true;
       })
-    })
+    }));
   }
 
   public viewOrder(order: IOrder) {
@@ -42,13 +51,13 @@ export class OrdersComponent implements OnInit {
       data: order,
       width: '50%'
     });
-    dialogRef.afterClosed().subscribe({
+    this.subscription.push(dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res != undefined) {
           this.getAllOrdersOfAllUsers();
         }
       },
-    });
+    }));
   }
 
 }

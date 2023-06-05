@@ -1,17 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 import { EditUserFormComponent } from '../edit-user-form/edit-user-form.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss']
 })
-export class UserCardComponent {
+export class UserCardComponent implements OnInit, OnDestroy {
   @Input() user!: IUser;
+
   public updatedId!: string | null;
+  public editUserSubscription!: Subscription;
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
@@ -19,11 +22,15 @@ export class UserCardComponent {
     this.userService.getUsers();
   }
 
+  ngOnDestroy(): void {
+    this.editUserSubscription.unsubscribe();
+  }
+
   editUser(user: IUser) {
     const dialogRef = this.dialog.open(EditUserFormComponent, {
       data: user,
     });
-    dialogRef.afterClosed().subscribe({
+    this.editUserSubscription = dialogRef.afterClosed().subscribe({
       next: (res) => {
         this.updatedId = user.id!;
         if (res != undefined) {

@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
 import { IProduct } from '../../interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   public products!: IProduct[];
   public updatedId!: string | null;
   public isLoading: boolean = true;
   public isError: boolean = false;
+  public getproductsubscription!: Subscription;
+  public addproductsubscription!: Subscription;
+  public editproductsubscription!: Subscription;
 
   constructor(public dialog: MatDialog, private productService: ProductService) { }
 
@@ -23,9 +27,15 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
+  ngOnDestroy(): void {
+    this.getproductsubscription.unsubscribe();
+    this.addproductsubscription.unsubscribe();
+    this.editproductsubscription.unsubscribe();
+  }
+
   public getProducts() {
     this.isLoading = true;
-    return this.productService.getProduct().subscribe({
+    this.getproductsubscription = this.productService.getProduct().subscribe({
       next: (res) => {
         this.products = res;
         this.isLoading = false;
@@ -37,6 +47,7 @@ export class ProductsComponent implements OnInit {
         this.isError = true;
       }
     });
+    return this.getproductsubscription;
   }
 
   public addProduct(): void {
@@ -50,7 +61,7 @@ export class ProductsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddProductFormComponent, {
       data: product
     });
-    dialogRef.afterClosed().subscribe({
+    this.addproductsubscription = dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res != undefined) {
           this.productService.addProduct({
@@ -68,7 +79,7 @@ export class ProductsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddProductFormComponent, {
       data: product,
     });
-    dialogRef.afterClosed().subscribe({
+    this.editproductsubscription = dialogRef.afterClosed().subscribe({
       next: (res) => {
         this.updatedId = product.id;
         if (res != undefined) {
