@@ -15,7 +15,7 @@
           <td scope="row">{{item.name}}</td>
           <td>{{item.stock}}</td>
           <td>{{item.price | currency: 'INR'}}</td>
-          <td><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteOneCartItem(item)"></i></td>
+          <td><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteOneCartItem(item.id)"></i></td>
         </tr>
 
       </tbody>

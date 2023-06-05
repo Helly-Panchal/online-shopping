@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { map } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,13 @@ export class CartService {
 
   getCart() {
     const user = JSON.parse(localStorage.getItem('userData')!);
-    return this.db.object(`cart/${user.uid}`).valueChanges();
+    return this.db.object(`cart/${user.uid}`).valueChanges().pipe(tap((res: any) => {
+      if (res) {
+        this.cartList = res;
+      } else {
+        this.cartList = [];
+      }
+    }));
   }
 
   addToCart(cartItems: IProduct) {
@@ -31,10 +37,14 @@ export class CartService {
   }
 
   emptyCart() {
-
+    const user = JSON.parse(localStorage.getItem('userData')!);
+    this.db.database.ref('cart').child(user.uid).remove();
   }
 
-  deleteOneCartItem(product: IProduct) {
-
+  deleteOneCartItem(id: string) {
+    const user = JSON.parse(localStorage.getItem('userData')!);
+    const index = this.cartList.findIndex((p: any) => p.id == id);
+    this.cartList.splice(index, 1);
+    this.db.database.ref('cart').child(user.uid).set(this.cartList);
   }
 }
