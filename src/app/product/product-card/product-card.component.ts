@@ -9,7 +9,6 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductCardComponent {
   @Input() product!: IProduct;
-  // @Input() addedItems: IProduct[] = [];
   public counter: number = 0;
 
   constructor(private cartService: CartService) { }

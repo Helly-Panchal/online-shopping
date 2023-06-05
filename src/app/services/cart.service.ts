@@ -1,43 +1,40 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  initializeCart(): void {
-    const cart = localStorage.getItem('cartItems');
-    if (!cart) {
-      localStorage.setItem('cartItems', JSON.stringify([]));
-    }
-  }
+
+  public cartList: IProduct[] = [];
+
+  constructor(private db: AngularFireDatabase) { }
 
   getCart() {
-    this.initializeCart();
-    return JSON.parse(localStorage.getItem('cartItems')!);
+    const user = JSON.parse(localStorage.getItem('userData')!);
+    return this.db.object(`cart/${user.uid}`).valueChanges();
   }
 
-  addToCart(product: IProduct) {
-    this.initializeCart();
-    const cart = JSON.parse(localStorage.getItem('cartItems')!);
-    const index = cart.findIndex((p: any) => p.id == product.id);
+  addToCart(cartItems: IProduct) {
+    const user = JSON.parse(localStorage.getItem('userData')!);
+    const index = this.cartList.findIndex((p: any) => p.id == cartItems.id);
+
     if (index == -1) {
-      cart.push(product);
+      this.cartList.push(cartItems);
     }
     else {
-      cart[index].stock += product.stock;
+      this.cartList[index].stock += cartItems.stock;
     }
-    return localStorage.setItem('cartItems', JSON.stringify(cart));
+    return this.db.database.ref('cart').child(user.uid).set(this.cartList);
   }
 
   emptyCart() {
-    localStorage.removeItem('cartItems');
+
   }
 
   deleteOneCartItem(product: IProduct) {
-    const cart: IProduct[] = JSON.parse(localStorage.getItem('cartItems')!);
-    const index = cart.findIndex((p) => p.id == product.id);
-    cart.splice(index, 1);
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+
   }
 }

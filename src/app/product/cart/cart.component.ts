@@ -19,27 +19,30 @@ export class CartComponent implements OnInit {
   }
 
   public getCartItems(): void {
-    this.cartService.initializeCart();
-    this.cartItem = this.cartService.getCart();
-    this.totalCartPrice = this.cartItem.reduce((total, value) => {
-      return total + (value.stock * value.price);
-    }, 0);
+    this.cartService.getCart().subscribe({
+      next: ((res: any) => {
+        this.cartItem = res;
+        this.totalCartPrice = this.cartItem.reduce((total, value) => {
+          return total + (value.stock * value.price);
+        }, 0);
+      })
+    });
   }
 
   public emptyCart(): void {
-    this.cartService.emptyCart();
-    this.getCartItems();
+    // this.cartService.emptyCart();
+    // this.getCartItems();
   }
 
   public deleteOneCartItem(product: IProduct) {
-    this.cartService.deleteOneCartItem(product);
-    this.getCartItems();
+    // this.cartService.deleteOneCartItem(product);
+    // this.getCartItems();
   }
 
   public placeOrder() {
-    this.placeOrderService.placeOrder(this.cartItem).then(() => {
-      alert("Your order has been placed successfully..!!");
-      this.emptyCart();
-    });
+    // this.placeOrderService.placeOrder(this.cartItem).then(() => {
+    //   alert("Your order has been placed successfully..!!");
+    //   this.emptyCart();
+    // });
   }
 }
