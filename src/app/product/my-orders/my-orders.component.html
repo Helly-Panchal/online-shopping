@@ -5,7 +5,7 @@
 <p class="text-center p-5" *ngIf="!isLoading && !isError && orderedItemsContainer.length === 0">
   No Orders yet.
 </p>
-<div class="container d-flex flex-column align-items-center mt-5"
+<!-- <div class="container d-flex flex-column align-items-center mt-5"
   *ngIf="!isLoading && !isError && orderedItemsContainer.length > 0">
   <div class="card w-100">
     <div class="card-header bg-dark text-light text-center">
@@ -43,4 +43,39 @@
       </li>
     </ul>
   </div>
+</div> -->
+
+<div class="container d-flex flex-column align-items-center justify-content-center mt-5 pb-5"
+  *ngIf="!isLoading && !isError && orderedItemsContainer.length > 0">
+  <div class="row g-3 w-100">
+    <div class="card d-flex align-items-center justify-content-between w-100 bg-dark">
+      <table class="table text-center text-light m-3 w-100">
+        <tr class="">
+          <th class="w-25">Order ID</th>
+          <th class="w-25">Price</th>
+          <th class="w-25">Status</th>
+          <th class="w-25">action</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <ng-container *ngFor="let order of orderedItemsContainer">
+    <div class="col d-flex justify-content-center m-2 w-100">
+      <div class="card d-flex align-items-center justify-content-between w-100">
+        <table class="table text-center m-0">
+          <tbody class="d-flex align-items-center justify-content-between h-25">
+
+            <td class="text-wrap p-3 w-25">{{order.id}}</td>
+            <td class="w-25">{{order.price}}</td>
+            <td class="w-25">{{order.status}}</td>
+
+            <div class="w-25">
+              <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
+            </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
 </div>

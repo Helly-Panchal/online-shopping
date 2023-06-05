@@ -25,7 +25,9 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.getOrderSubscription.unsubscribe();
+    if (this.getOrderSubscription) {
+      this.getOrderSubscription.unsubscribe();
+    }
   }
 
   public close() {
@@ -37,7 +39,7 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
       this.placeOrderService.cancelOrder(this.data.id);
       this.close();
     }
-    this.placeOrderService.getOrderedItems().subscribe({
+    this.getOrderSubscription = this.placeOrderService.getOrderedItems().subscribe({
       next: ((res: any) => {
         this.data = res;
       })

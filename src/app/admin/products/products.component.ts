@@ -29,8 +29,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.getproductsubscription.unsubscribe();
-    this.addproductsubscription.unsubscribe();
-    this.editproductsubscription.unsubscribe();
+    if (this.addproductsubscription || this.editproductsubscription) {
+      this.addproductsubscription.unsubscribe();
+      this.editproductsubscription.unsubscribe();
+    }
   }
 
   public getProducts() {

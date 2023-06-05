@@ -23,7 +23,9 @@ export class UserCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.editUserSubscription.unsubscribe();
+    if (this.editUserSubscription) {
+      this.editUserSubscription.unsubscribe();
+    }
   }
 
   editUser(user: IUser) {

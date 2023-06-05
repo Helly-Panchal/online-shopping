@@ -28,7 +28,9 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.placeOrderSubscription.unsubscribe();
-    this.viewOrderSubscription.unsubscribe();
+    if (this.viewOrderSubscription) {
+      this.viewOrderSubscription.unsubscribe();
+    }
   }
 
   public getOrderedItems() {

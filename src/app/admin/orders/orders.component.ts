@@ -15,7 +15,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
   public isError: boolean = false;
 
-  public subscription: Subscription[] = [];
+  public getSubscription!: Subscription;
+  public viewSubscription!: Subscription;
 
   constructor(private placeOrderService: PlaceOrderService, public dialog: MatDialog) { }
 
@@ -24,14 +25,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach((element) => {
-      element.unsubscribe();
-    })
+    this.getSubscription.unsubscribe();
+    if (this.viewSubscription) {
+      this.viewSubscription.unsubscribe();
+    }
   }
 
   public getAllOrdersOfAllUsers() {
     this.isLoading = true;
-    this.subscription.push(this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
+    this.getSubscription = this.placeOrderService.getAllOrdersOfAllUsers().subscribe({
       next: ((res) => {
         this.allOrdersList = res;
         this.isLoading = false;
@@ -43,7 +45,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.isError = true;
       })
-    }));
+    });
   }
 
   public viewOrder(order: IOrder) {
@@ -51,13 +53,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
       data: order,
       width: '50%'
     });
-    this.subscription.push(dialogRef.afterClosed().subscribe({
+    this.viewSubscription = dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res != undefined) {
           this.getAllOrdersOfAllUsers();
         }
       },
-    }));
+    });
   }
 
 }
