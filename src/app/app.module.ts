@@ -16,7 +16,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductModule } from './product/product.module';
-import { HoverDirective } from './directives/hover.directive';
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.comp
     RegisterComponent,
     UserProfileComponent,
     PageNotFoundComponent,
-    // HoverDirective,
   ],
   imports: [
     BrowserModule,
