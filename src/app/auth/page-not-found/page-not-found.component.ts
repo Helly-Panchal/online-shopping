@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent {
+  public status: string = '404';
+  public errorMessage: string = 'Page Not Found';
 
   constructor(private router: Router) { }
 
