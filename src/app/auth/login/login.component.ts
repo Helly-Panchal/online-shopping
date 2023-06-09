@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent {
   public isError: boolean = false;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   onSubmit(loginForm: NgForm) {
     console.log(loginForm);
