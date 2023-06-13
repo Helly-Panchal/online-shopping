@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -7,7 +7,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {
   public isError: boolean = false;

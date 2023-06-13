@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -7,7 +7,6 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent implements OnInit, OnDestroy {
   public usersList!: IUser[];

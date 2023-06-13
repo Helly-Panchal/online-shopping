@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserCardComponent implements OnInit, OnDestroy {
   @Input() user!: IUser;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { IOrder } from 'src/app/interfaces/order.interface';
@@ -8,7 +8,6 @@ import { PlaceOrderService } from 'src/app/services/place-order.service';
   selector: 'app-admin-view-order',
   templateUrl: './admin-view-order.component.html',
   styleUrls: ['./admin-view-order.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminViewOrderComponent implements OnInit, OnDestroy {
   public item!: IProduct[];

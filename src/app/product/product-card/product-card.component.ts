@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -6,7 +6,6 @@ import { CartService } from 'src/app/services/cart.service';
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductCardComponent {
   @Input() product!: IProduct;

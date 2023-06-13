@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
 import { IProduct } from '../../interfaces/product.interface';
@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 

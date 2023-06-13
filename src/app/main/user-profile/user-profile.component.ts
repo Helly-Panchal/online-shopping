@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { IUser } from 'src/app/interfaces/user.interface';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
   public userData!: IUser;

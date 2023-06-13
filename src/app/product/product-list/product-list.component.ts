@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription, debounceTime } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
@@ -7,7 +7,6 @@ import { ProductService } from 'src/app/services/product.service';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
   public filterText: string = '';

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from '../../interfaces/product.interface';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -7,7 +7,6 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
   selector: 'app-add-product-form',
   templateUrl: './add-product-form.component.html',
   styleUrls: ['./add-product-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddProductFormComponent implements OnInit {
 

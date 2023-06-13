@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   public allOrdersList: IOrder[] = [];

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -6,7 +6,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   public isError: boolean = false;

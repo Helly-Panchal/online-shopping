@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
@@ -9,7 +9,6 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyOrdersComponent implements OnInit, OnDestroy {
 
