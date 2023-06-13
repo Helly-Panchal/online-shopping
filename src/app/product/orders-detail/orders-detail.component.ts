@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { IOrder } from 'src/app/interfaces/order.interface';
@@ -8,7 +8,8 @@ import { PlaceOrderService } from 'src/app/services/place-order.service';
 @Component({
   selector: 'app-orders-detail',
   templateUrl: './orders-detail.component.html',
-  styleUrls: ['./orders-detail.component.scss']
+  styleUrls: ['./orders-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersDetailComponent implements OnInit, OnDestroy {
   public item!: IProduct[];

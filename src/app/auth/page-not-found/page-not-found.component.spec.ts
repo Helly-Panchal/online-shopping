@@ -3,9 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
 
-fdescribe('PageNotFoundComponent', () => {
+describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
   let compiled: HTMLElement;
@@ -13,9 +12,8 @@ fdescribe('PageNotFoundComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PageNotFoundComponent],
-      imports: [AngularFireModule.initializeApp(environment.firebase), FormsModule],
-    })
-      .compileComponents();
+      imports: [AngularFireModule.initializeApp(environment.firebase)],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PageNotFoundComponent);
     component = fixture.componentInstance;

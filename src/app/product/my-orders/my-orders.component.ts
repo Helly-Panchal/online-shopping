@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
 import { OrdersDetailComponent } from '../orders-detail/orders-detail.component';
@@ -8,7 +8,8 @@ import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
-  styleUrls: ['./my-orders.component.scss']
+  styleUrls: ['./my-orders.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyOrdersComponent implements OnInit, OnDestroy {
 

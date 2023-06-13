@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IUser } from 'src/app/interfaces/user.interface';
@@ -6,7 +6,8 @@ import { IUser } from 'src/app/interfaces/user.interface';
 @Component({
   selector: 'app-edit-user-form',
   templateUrl: './edit-user-form.component.html',
-  styleUrls: ['./edit-user-form.component.scss']
+  styleUrls: ['./edit-user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditUserFormComponent implements OnInit {
   public editUserForm!: FormGroup;

@@ -1,20 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IOrder } from 'src/app/interfaces/order.interface';
 import { PlaceOrderService } from 'src/app/services/place-order.service';
 import { AdminViewOrderComponent } from '../admin-view-order/admin-view-order.component';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  styleUrls: ['./orders.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   public allOrdersList: IOrder[] = [];
   public isLoading: boolean = true;
   public isError: boolean = false;
-
   public getSubscription!: Subscription;
   public viewSubscription!: Subscription;
 
@@ -61,5 +60,4 @@ export class OrdersComponent implements OnInit, OnDestroy {
       },
     });
   }
-
 }
