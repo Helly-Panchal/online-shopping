@@ -22,7 +22,7 @@
     </div>
   </div>
   <br>
-  <ng-container *ngFor="let order of allOrdersList">
+  <ng-container *ngFor="let order of allOrdersList; trackBy: trackOrders">
     <div class="col d-flex justify-content-center m-2 w-100">
       <div class="card d-flex align-items-center justify-content-between w-100">
         <table class="table text-center m-0">

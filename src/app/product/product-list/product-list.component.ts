@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getAllProducts();
     this.searchSubscription = this.productService.filter$.pipe(debounceTime(300)).subscribe({
       next: (res) => {
@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
     this.getProductSubscription.unsubscribe();
   }
@@ -46,5 +46,9 @@ export class ProductListComponent implements OnInit {
         this.isError = true;
       }
     });
+  }
+
+  public trackProductList(index: number, element: any) {
+    return element.id;
   }
 }

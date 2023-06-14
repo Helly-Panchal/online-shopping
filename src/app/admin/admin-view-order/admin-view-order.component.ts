@@ -44,4 +44,8 @@ export class AdminViewOrderComponent implements OnInit, OnDestroy {
       })
     });
   }
+
+  public trackViewOrder(index: number, element: any) {
+    return element.id;
+  }
 }

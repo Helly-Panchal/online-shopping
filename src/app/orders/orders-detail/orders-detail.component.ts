@@ -45,4 +45,8 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
       })
     });
   }
+
+  public trackOrderDetails(index: number, element: any) {
+    return element.id;
+  }
 }

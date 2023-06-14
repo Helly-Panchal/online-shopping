@@ -18,7 +18,7 @@
           <th>Price</th>
         </tr>
       </thead>
-      <tbody *ngFor="let item of data.item">
+      <tbody *ngFor="let item of data.item; trackBy: trackViewOrder">
         <tr>
           <td>{{item.name}}</td>
           <td>{{item.stock}}</td>

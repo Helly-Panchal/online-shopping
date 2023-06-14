@@ -55,4 +55,8 @@ export class CartComponent implements OnInit, OnDestroy {
       this.emptyCart();
     });
   }
+
+  public trackCart(index: number, element: any) {
+    return element.id;
+  }
 }

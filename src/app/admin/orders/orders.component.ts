@@ -59,4 +59,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  public trackOrders(index: number, element: any) {
+    return element.id;
+  }
 }

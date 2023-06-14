@@ -71,11 +71,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
 
   public search(filterText: any) {
     this.productService.filter$.next(filterText);
+  }
+
+  public trackHeaderLinks(index: number, element: any) {
+    return element.id;
   }
 }

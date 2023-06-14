@@ -9,7 +9,7 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody *ngFor="let item of cartItem">
+      <tbody *ngFor="let item of cartItem; trackBy: trackCart">
 
         <tr class="">
           <td scope="row">{{item.name}}</td>

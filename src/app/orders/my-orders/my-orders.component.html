@@ -5,45 +5,6 @@
 <p class="text-center p-5" *ngIf="!isLoading && !isError && orderedItemsContainer.length === 0">
   No Orders yet.
 </p>
-<!-- <div class="container d-flex flex-column align-items-center mt-5"
-  *ngIf="!isLoading && !isError && orderedItemsContainer.length > 0">
-  <div class="card w-100">
-    <div class="card-header bg-dark text-light text-center">
-      <ul class="list-group list-group-flush heading">
-        <li class="list-group-item bg-dark text-light d-flex justify-content-center align-items-center text-center">
-          <div class="container">
-            <p>Order Id</p>
-          </div>
-          <div class="container">
-            <p>Price</p>
-          </div>
-          <div class="container">
-            <p>Status</p>
-          </div>
-          <div class="container">
-            <p>View Order</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <ul class="list-group list-group-flush" *ngFor="let order of orderedItemsContainer">
-      <li class="list-group-item p-3 d-flex justify-content-center align-items-center text-center">
-        <div class="container">
-          <p>{{order.id}}</p>
-        </div>
-        <div class="container">
-          <p>{{order.price | currency: 'INR'}}</p>
-        </div>
-        <div class="container">
-          <p>{{order.status}}</p>
-        </div>
-        <div class="container">
-          <button type="button" class="btn btn-primary btn-sm" (click)="viewOrder(order)">Go to order</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div> -->
 
 <div class="container d-flex flex-column align-items-center justify-content-center mt-5 pb-5"
   *ngIf="!isLoading && !isError && orderedItemsContainer.length > 0">
@@ -60,7 +21,7 @@
     </div>
   </div>
   <br>
-  <ng-container *ngFor="let order of orderedItemsContainer">
+  <ng-container *ngFor="let order of orderedItemsContainer; trackBy: trackUserOrders">
     <div class="col d-flex justify-content-center m-2 w-100">
       <div class="card d-flex align-items-center justify-content-between w-100">
         <table class="table text-center m-0">
