@@ -21,7 +21,7 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody *ngFor="let product of products">
+      <tbody *ngFor="let product of products; trackBy: trackProduct">
         <tr>
           <td>{{product.name}}</td>
           <td>{{product.description}}</td>

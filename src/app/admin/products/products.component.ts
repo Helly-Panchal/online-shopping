@@ -34,6 +34,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+  public trackProduct(index: number, element: any) {
+    return element.id;
+  }
+
   public getProducts() {
     this.isLoading = true;
     this.getproductsubscription = this.productService.getProduct().subscribe({
