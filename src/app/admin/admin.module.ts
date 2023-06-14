@@ -31,12 +31,5 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     MatDialogModule,
     ReactiveFormsModule
   ],
-  exports: [
-    CommonModule,
-    AdminRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule
-  ]
 })
 export class AdminModule { }

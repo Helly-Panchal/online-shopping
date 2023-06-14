@@ -14,7 +14,7 @@
         <tr class="">
           <td scope="row">{{item.name}}</td>
           <td>{{item.stock}}</td>
-          <td>{{item.price | currency: 'INR'}}</td>
+          <td>{{item.price}}</td>
           <td><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteOneCartItem(item.id)"></i></td>
         </tr>
 
@@ -22,7 +22,7 @@
     </table>
   </div>
 
-  <h3 class="text-center mt-4"><strong>Total price: {{totalCartPrice | currency: 'INR'}} </strong></h3>
+  <h3 class="text-center mt-4"><strong>Total price: {{totalCartPrice}} </strong></h3>
 
   <div class="d-flex justify-content-center m-0 mt-4">
     <button type="button" class="btn btn-success me-3" (click)="placeOrder()">Place Order</button>
