@@ -24,6 +24,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.getUserSubscription.unsubscribe();
   }
 
+  public trackUser(index: number, element: any) {
+    return element.id;
+  }
+
   public getUsers(): void {
     this.isLoading = true;
     this.getUserSubscription = this.userService.getUsers().subscribe({

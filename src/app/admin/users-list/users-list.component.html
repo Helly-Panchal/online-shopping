@@ -20,7 +20,7 @@
         </table>
       </div>
     </div>
-    <ng-container *ngFor="let user of usersList">
+    <ng-container *ngFor="let user of usersList; trackBy: trackUser">
       <app-user-card [user]="user"></app-user-card>
     </ng-container>
   </div>
