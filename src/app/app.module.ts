@@ -15,8 +15,9 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductModule } from './product/product.module';
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
+import { ProductRoutingModule } from './product/product-routing.module';
+import { ProductModule } from './product/product.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.comp
     AdminModule,
     ProductModule,
     BrowserAnimationsModule,
+    ProductRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

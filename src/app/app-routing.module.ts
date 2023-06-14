@@ -30,18 +30,13 @@ const routes: Routes = [
       {
         path: 'admin', component: AdminDashboardComponent,
         canActivate: [RoleGuard],
-        children: [
-          { path: 'products', component: ProductsComponent },
-          { path: 'orders', component: OrdersComponent },
-          { path: 'users', component: UsersListComponent },
-          { path: '', redirectTo: 'products', pathMatch: 'full' }
-        ]
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
       },
       { path: 'my-orders', component: MyOrdersComponent },
       { path: 'products', component: ProductListComponent },
       { path: 'cart', component: CartComponent },
       { path: 'profile', component: UserProfileComponent },
-    ]
+    ],
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

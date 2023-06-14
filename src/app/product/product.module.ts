@@ -10,7 +10,6 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { OrdersDetailComponent } from './orders-detail/orders-detail.component';
 import { HoverDirective } from '../directives/hover.directive';
 
-
 @NgModule({
   declarations: [
     CartComponent,
@@ -19,7 +18,7 @@ import { HoverDirective } from '../directives/hover.directive';
     ProductCardComponent,
     FilterPipe,
     OrdersDetailComponent,
-    HoverDirective
+    HoverDirective,
   ],
   imports: [
     CommonModule,
