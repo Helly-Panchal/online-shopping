@@ -8,7 +8,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  public isError: boolean = false;
+  // public isError: boolean = false;
+  public error: string | undefined;
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -21,7 +22,7 @@ export class LoginComponent {
       console.log('You are Successfully logged in!', res);
       form.reset();
     }).catch((err: { message: any; }) => {
-      this.isError = true;
+      this.error = "Invalid email or password..!!";
       form.reset();
       console.log('Something is wrong:', err.message);
     });

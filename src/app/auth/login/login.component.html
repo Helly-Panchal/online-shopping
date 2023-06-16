@@ -1,5 +1,5 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100">
-  <ng-container *ngIf="isError === true">
+  <!-- <ng-container *ngIf="isError === true">
     <div
       class="alert alert-danger alert-dismissible fade show d-flex align-items-baseline justify-content-between p-3 w-50"
       role="alert">
@@ -10,7 +10,9 @@
       <button type="button" class="btn m-0 p-0" data-bs-dismiss="alert" aria-label="Close"><i
           class="fas fa-close fa-lg"></i></button>
     </div>
-  </ng-container>
+  </ng-container> -->
+
+  <app-alert *ngIf="error" [message]="error" (close)="error = undefined"></app-alert>
 
   <h1 class="text-center">Login</h1>
 

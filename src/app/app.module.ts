@@ -15,16 +15,17 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './main/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LayoutComponent,
-    LoginComponent,
-    RegisterComponent,
+    // LoginComponent,
+    // RegisterComponent,
     UserProfileComponent,
-    PageNotFoundComponent,
+    // PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.comp
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
