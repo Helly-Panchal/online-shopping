@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AlertComponent } from 'src/app/shared-module/alert/alert.component';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  public isError: boolean = false;
+  private closeSub!: Subscription;
+  public error: string | undefined;
+  @ViewChild('error', { read: ViewContainerRef }) viewContainerRef!: ViewContainerRef;
 
   constructor(private authenticationService: AuthenticationService, private db: AngularFireDatabase) { }
 
@@ -27,9 +31,19 @@ export class RegisterComponent {
         form.reset();
       }
     }).catch((error: { message: any; }) => {
-      this.isError = true;
+      this.error = "Email Id already exists.Please login or try another Email Id to register.";
+      this.showAlert();
       form.reset();
       console.log('Something is wrong:', error.message);
+    });
+  }
+
+  public showAlert() {
+    const componentRef = this.viewContainerRef.createComponent(AlertComponent);
+    componentRef.instance.message = this.error!;
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.viewContainerRef.clear();
+      this.closeSub.unsubscribe();
     });
   }
 }
