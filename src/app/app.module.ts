@@ -10,11 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './main/header/header.component';
 import { LayoutComponent } from './main/layout/layout.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './main/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
-import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -22,10 +19,7 @@ import { AuthModule } from './auth/auth.module';
     AppComponent,
     HeaderComponent,
     LayoutComponent,
-    // LoginComponent,
-    // RegisterComponent,
     UserProfileComponent,
-    // PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
