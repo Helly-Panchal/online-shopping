@@ -59,11 +59,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.links = [
             {
               title: 'Register',
-              href: 'register',
+              href: 'auth/register',
             },
             {
               title: 'Login',
-              href: 'login',
+              href: 'auth/login',
             },
           ];
         }

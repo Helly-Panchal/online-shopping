@@ -10,8 +10,12 @@ import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.comp
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'register', component: RegisterComponent },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+  },
   {
     path: 'layout', component: LayoutComponent,
     canActivate: [AuthGuard],
@@ -42,7 +46,7 @@ const routes: Routes = [
       { path: 'profile', component: UserProfileComponent },
     ],
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
